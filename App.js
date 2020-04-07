@@ -35,12 +35,53 @@ function AdditionalScreen2() {
   );
 }
 
-const headerBarOptions = {
-  title: 'Custom Title',
-  headerStyle: { backgroundColor: 'white', height: 120 },
-  headerTitleStyle: { color: 'black', fontWeight: 'bold', left: 50 },
+const pageHeaderBar = {
+  title: 'Neues Rezept',
+  headerStyle: {
+    backgroundColor: 'white',
+    height: 120,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  headerTitleStyle: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+    left: -15
+  },
   headerTitleAlign: 'left',
-  headerRight: () => <Image style={{ height: 110, width: 110, right: 30, top: 30 }} source={require('./assets/icon.png')} />
+  headerBackTitleVisible: false,
+  headerBackImage: () => <Image style={{ height: 30, width: 25, left: 10 }} source={require('./assets/backButton.png')} />,
+  headerRight: () => <Image style={{ height: 100, width: 100, right: 15, top: 10 }} source={require('./assets/icon.png')} />
+};
+
+const homeHeaderBar = {
+  title: 'CookIT!',
+  headerStyle: {
+    backgroundColor: 'white',
+    height: 160,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  headerTitleStyle: {
+    color: 'black',
+    fontSize: 60,
+    fontWeight: 'bold',
+    left: 60
+  },
+  headerLeft: () => <Image style={{ height: 120, width: 120, left: 10, top: -10 }} source={require('./assets/icon.png')} />
 };
 
 const Stack = createStackNavigator();
@@ -48,10 +89,10 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={headerBarOptions} headerMode="float">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="AddScreen1" component={AdditionalScreen1} />
-        <Stack.Screen name="AddScreen2" component={AdditionalScreen2} />
+      <Stack.Navigator initialRouteName="Home" headerMode="float">
+        <Stack.Screen name="Home" component={HomeScreen} options={homeHeaderBar} />
+        <Stack.Screen name="AddScreen1" component={AdditionalScreen1} options={pageHeaderBar} />
+        <Stack.Screen name="AddScreen2" component={AdditionalScreen2} options={pageHeaderBar} />
       </Stack.Navigator>
     </NavigationContainer>
   );

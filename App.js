@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -35,12 +35,20 @@ function AdditionalScreen2() {
   );
 }
 
+const headerBarOptions = {
+  title: 'Custom Title',
+  headerStyle: { backgroundColor: 'white', height: 120 },
+  headerTitleStyle: { color: 'black', fontWeight: 'bold', left: 50 },
+  headerTitleAlign: 'left',
+  headerRight: () => <Image style={{ height: 110, width: 110, right: 30, top: 30 }} source={require('./assets/icon.png')} />
+};
+
 const Stack = createStackNavigator();
 
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Home" screenOptions={headerBarOptions} headerMode="float">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="AddScreen1" component={AdditionalScreen1} />
         <Stack.Screen name="AddScreen2" component={AdditionalScreen2} />
@@ -49,7 +57,6 @@ function App() {
   );
 }
 
-export default App;
 
 const styles = StyleSheet.create({
   container: {

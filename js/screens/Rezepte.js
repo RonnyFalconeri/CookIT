@@ -5,6 +5,13 @@ import ListItem from '../components/ListItem';
 
 
 export default class Rezepte extends React.Component {
+
+    componentDidMount() {
+
+        // change header title
+        this.props.navigation.setOptions({ title: 'Rezepte' });
+    }
+
     render() {
         return (
             <View>

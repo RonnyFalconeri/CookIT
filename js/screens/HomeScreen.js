@@ -29,13 +29,6 @@ export default class HomeScreen extends React.Component {
                 />
 
                 <HomeScreen_ListItem
-                    title="Online Rezept"
-                    onPress={() => this.props.navigation.navigate('Online_Rezept')}
-                    color="#c27ba0"
-                    image={require('../../assets/images/backgroundimage.png')}
-                />
-
-                <HomeScreen_ListItem
                     title="Favoriten"
                     onPress={() => this.props.navigation.navigate('Favoriten')}
                     color="#8e7cc3"
@@ -43,16 +36,16 @@ export default class HomeScreen extends React.Component {
                 />
 
                 <HomeScreen_ListItem
-                    title="Zufällig"
-                    onPress={() => this.props.navigation.navigate('Zufällig')}
-                    color="#f6b26b"
+                    title="Online-Suche"
+                    onPress={() => this.props.navigation.navigate('Online_Suche')}
+                    color="#76a5af"
                     image={require('../../assets/images/backgroundimage.png')}
                 />
 
                 <HomeScreen_ListItem
-                    title="Online-Suche"
-                    onPress={() => this.props.navigation.navigate('Online_Suche')}
-                    color="#76a5af"
+                    title="Zufällig"
+                    onPress={() => this.props.navigation.navigate('Zufällig')}
+                    color="#f6b26b"
                     image={require('../../assets/images/backgroundimage.png')}
                 />
 

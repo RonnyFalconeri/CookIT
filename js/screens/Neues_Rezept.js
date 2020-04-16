@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, View, Picker, KeyboardAvoidingView, Platform } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, View, Picker } from 'react-native';
+
 
 
 export default class Neues_Rezept extends React.Component {
+    state = {
+        recipe: null
+    };
 
     componentDidMount() {
 
@@ -11,18 +14,26 @@ export default class Neues_Rezept extends React.Component {
         this.props.navigation.setOptions({ title: 'Neues Rezept' });
     }
 
+    _saveRecipe() {
+        console.log('saved: ');
+        console.log(this.state.recipe);
+    }
+
     render() {
+
         return (
             <ScrollView contentContainerStyle={styles.container}>
 
-                <TouchableOpacity style={styles.imageInput}>
+                <TouchableOpacity style={styles.imageInput} >
                     <Text style={styles.imageInput_label}>Foto hochladen</Text>
                 </TouchableOpacity>
 
                 <TextInput
                     style={styles.titleInput}
                     placeholder="Bezeichnung"
+                    onChangeText={text => this.setState({ text })}
                 />
+
 
                 <View style={styles.durationInput}>
                     <Text style={styles.durationInput_label}>Dauer: </Text>
@@ -53,7 +64,7 @@ export default class Neues_Rezept extends React.Component {
                             placeholder="Zutat"
                         />
                     </View>
-                    <TouchableOpacity style={{ backgroundColor: '#60b853', borderRadius: 50, width: 30, height: 30, alignItems: 'center', justifyContent: 'center' }}>
+                    <TouchableOpacity style={{ backgroundColor: '#93c47d', borderRadius: 50, width: 30, height: 30, alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>+</Text>
                     </TouchableOpacity>
                 </View>
@@ -63,6 +74,10 @@ export default class Neues_Rezept extends React.Component {
                     placeholder="Zubereitung"
                     multiline={true}
                 />
+
+                <TouchableOpacity style={styles.imageInput} onPress={this._saveRecipe}>
+                    <Text style={styles.imageInput_label}>Speichern</Text>
+                </TouchableOpacity>
 
             </ScrollView>
         );
@@ -76,7 +91,7 @@ const styles = StyleSheet.create({
     },
     imageInput: {
         width: '70%',
-        backgroundColor: '#60b853',
+        backgroundColor: '#93c47d',
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',

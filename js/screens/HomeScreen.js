@@ -6,7 +6,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>HOMESCREEN</Text>
+                <Text>HOMESCREEN!</Text>
                 <Button title="Rezepte" onPress={() => this.props.navigation.navigate('Rezepte')} />
                 <Button title="Rezept" onPress={() => this.props.navigation.navigate('Rezept')} />
                 <Button title="Neues_Rezept" onPress={() => this.props.navigation.navigate('Neues_Rezept')} />

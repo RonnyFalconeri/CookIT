@@ -37,6 +37,7 @@ export default class App extends React.Component {
 }
 
 
+
 const styles = StyleSheet.create({
   homeHeaderBarStyle: {
     backgroundColor: 'white',
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
     left: 10,
-    top: -10
+    top: 3
   },
   pageHeaderBarStyle: {
     backgroundColor: 'white',

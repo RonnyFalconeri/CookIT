@@ -17,44 +17,43 @@ export default class HomeScreen extends React.Component {
                 <HomeScreen_ListItem
                     title="Rezepte"
                     onPress={() => this.props.navigation.navigate('Rezepte')}
-                    color="#03a5fc"
-                    image={require('../../assets/images/rezepte.jpg')}
-                />
-
-                <HomeScreen_ListItem
-                    title="Rezept"
-                    onPress={() => this.props.navigation.navigate('Rezept')}
-                    color="green"
+                    color="#6d9eeb"
+                    image={require('../../assets/images/backgroundimage.png')}
                 />
 
                 <HomeScreen_ListItem
                     title="Neues Rezept"
                     onPress={() => this.props.navigation.navigate('Neues_Rezept')}
-                    color="blue"
+                    color="#93c47d"
+                    image={require('../../assets/images/backgroundimage.png')}
                 />
 
                 <HomeScreen_ListItem
                     title="Online Rezept"
                     onPress={() => this.props.navigation.navigate('Online_Rezept')}
-                    color="purple"
+                    color="#c27ba0"
+                    image={require('../../assets/images/backgroundimage.png')}
                 />
 
                 <HomeScreen_ListItem
                     title="Favoriten"
                     onPress={() => this.props.navigation.navigate('Favoriten')}
-                    color="purple"
+                    color="#8e7cc3"
+                    image={require('../../assets/images/backgroundimage.png')}
                 />
 
                 <HomeScreen_ListItem
                     title="Zufällig"
                     onPress={() => this.props.navigation.navigate('Zufällig')}
-                    color="purple"
+                    color="#f6b26b"
+                    image={require('../../assets/images/backgroundimage.png')}
                 />
 
                 <HomeScreen_ListItem
-                    title="Online_Suche"
+                    title="Online-Suche"
                     onPress={() => this.props.navigation.navigate('Online_Suche')}
-                    color="purple"
+                    color="#76a5af"
+                    image={require('../../assets/images/backgroundimage.png')}
                 />
 
             </ScrollView>

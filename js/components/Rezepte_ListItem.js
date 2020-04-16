@@ -21,7 +21,7 @@ export default class Rezepte_ListItem extends React.Component {
 const styles = StyleSheet.create({
     listItem_container: {
         alignItems: 'center',
-        backgroundColor: '#03a5fc',
+        backgroundColor: '#6d9eeb',
         padding: 20,
         marginTop: 15,
         marginBottom: 15,

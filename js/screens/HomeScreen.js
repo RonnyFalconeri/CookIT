@@ -18,6 +18,7 @@ export default class HomeScreen extends React.Component {
                     title="Rezepte"
                     onPress={() => this.props.navigation.navigate('Rezepte')}
                     color="#03a5fc"
+                    image={require('../../assets/images/rezepte.jpg')}
                 />
 
                 <HomeScreen_ListItem

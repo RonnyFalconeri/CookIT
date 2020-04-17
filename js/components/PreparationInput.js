@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 
-
-export default class TitleInput extends React.Component {
+export default class PreparationInput extends React.Component {
     render() {
         return (
             <TextInput
-                style={styles.titleInput}
-                placeholder="Bezeichnung"
+                style={styles.preparationInput}
+                placeholder="Zubereitung"
+                multiline={true}
                 onChangeText={this.props.onChange}
             />
         );
@@ -15,8 +15,8 @@ export default class TitleInput extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    titleInput: {
-        height: 40,
+    preparationInput: {
+        minHeight: 40,
         width: '80%',
         borderBottomColor: 'black',
         borderBottomWidth: 1,

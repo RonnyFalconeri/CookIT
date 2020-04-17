@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 
-export default class imageInput extends React.Component {
+export default class ImageInput extends React.Component {
     render() {
         return (
             <TouchableOpacity style={styles.imageInput} >

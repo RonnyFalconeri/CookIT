@@ -4,9 +4,7 @@ import { Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, View, Picker
 
 
 export default class Neues_Rezept extends React.Component {
-    state = {
-        recipe: null
-    };
+    state = {};
 
     componentDidMount() {
 
@@ -14,12 +12,77 @@ export default class Neues_Rezept extends React.Component {
         this.props.navigation.setOptions({ title: 'Neues Rezept' });
     }
 
-    _saveRecipe() {
+    _saveRecipe = () => {
+        // TODO: save recipe in DB
         console.log('saved: ');
         console.log(this.state.recipe);
     }
 
+    _handleTitleInput(value) {
+        // update title in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['title'] = value;
+            return { recipe }
+        });
+    }
+
+    _handleDurationInput(value) {
+        // update duration in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['duration'] = value;
+            return { recipe }
+        });
+    }
+
+    _handleNationalityInput(value) {
+        // update duration in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['nationality'] = value;
+            return { recipe }
+        });
+    }
+
+    _handleIngredientsInput(prop, value) {
+        // update ingredients in state.recipe
+        if (prop === 'amount') {
+            this.setState(prevState => ({
+                recipe: {
+                    ...prevState.recipe,
+                    ingredients: {
+                        ...prevState.recipe.ingredients,
+                        amount: value
+                    }
+                }
+            }));
+        } else
+            if (prop === 'ingredient') {
+                this.setState(prevState => ({
+                    recipe: {
+                        ...prevState.recipe,
+                        ingredients: {
+                            ...prevState.recipe.ingredients,
+                            ingredient: value
+                        }
+                    }
+                }));
+            }
+    }
+
+    _handlePreparationInput(value) {
+        // update preparation in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['preparation'] = value;
+            return { recipe }
+
+        });
+    }
+
     render() {
+
 
         return (
             <ScrollView contentContainerStyle={styles.container}>
@@ -31,19 +94,26 @@ export default class Neues_Rezept extends React.Component {
                 <TextInput
                     style={styles.titleInput}
                     placeholder="Bezeichnung"
-                    onChangeText={text => this.setState({ text })}
+                    onChangeText={(value) => this._handleTitleInput(value)}
                 />
 
 
                 <View style={styles.durationInput}>
                     <Text style={styles.durationInput_label}>Dauer: </Text>
-                    <TextInput style={[styles.titleInput, { width: 50 }]} keyboardType="number-pad" />
+                    <TextInput
+                        style={[styles.titleInput, { width: 50 }]}
+                        keyboardType="number-pad"
+                        onChangeText={(value) => this._handleDurationInput(value)}
+                    />
                     <Text style={styles.durationInput_label}> Minuten</Text>
                 </View>
 
                 <View style={styles.nationalityInput}>
                     <Text style={styles.nationalityInput_label}>Nationalität: </Text>
-                    <Picker selectedValue="gre" style={{ width: 150 }} >
+                    <Picker
+                        onValueChange={(Value) => this._handleNationalityInput(Value)}
+                    >
+                        <Picker.Item label="Keine" value="none" />
                         <Picker.Item label="Italienisch" value="ita" />
                         <Picker.Item label="Deutsch" value="deu" />
                         <Picker.Item label="Griechisch" value="gre" />
@@ -58,10 +128,12 @@ export default class Neues_Rezept extends React.Component {
                         <TextInput
                             style={{ height: 40, borderBottomColor: 'black', borderBottomWidth: 1, fontSize: 20, margin: 10 }}
                             placeholder="Menge"
+                            onChangeText={(value) => this._handleIngredientsInput('amount', value)}
                         />
                         <TextInput
                             style={{ height: 40, width: 100, borderBottomColor: 'black', borderBottomWidth: 1, fontSize: 20, margin: 10 }}
                             placeholder="Zutat"
+                            onChangeText={(value) => this._handleIngredientsInput('ingredient', value)}
                         />
                     </View>
                     <TouchableOpacity style={{ backgroundColor: '#93c47d', borderRadius: 50, width: 30, height: 30, alignItems: 'center', justifyContent: 'center' }}>
@@ -73,6 +145,7 @@ export default class Neues_Rezept extends React.Component {
                     style={styles.preparationInput}
                     placeholder="Zubereitung"
                     multiline={true}
+                    onChangeText={(value) => this._handlePreparationInput(value)}
                 />
 
                 <TouchableOpacity style={styles.imageInput} onPress={this._saveRecipe}>

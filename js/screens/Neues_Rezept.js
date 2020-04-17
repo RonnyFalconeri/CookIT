@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, View, Picker } from 'react-native';
+import { Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, View, Picker, Button } from 'react-native';
 
-
+import TitleInput from '../components/TitleInput';
+import ImageInput from '../components/ImageInput';
 
 export default class Neues_Rezept extends React.Component {
     state = {};
@@ -87,13 +88,9 @@ export default class Neues_Rezept extends React.Component {
         return (
             <ScrollView contentContainerStyle={styles.container}>
 
-                <TouchableOpacity style={styles.imageInput} >
-                    <Text style={styles.imageInput_label}>Foto hochladen</Text>
-                </TouchableOpacity>
+                <ImageInput />
 
-                <TextInput
-                    style={styles.titleInput}
-                    placeholder="Bezeichnung"
+                <TitleInput
                     onChangeText={(value) => this._handleTitleInput(value)}
                 />
 
@@ -148,9 +145,10 @@ export default class Neues_Rezept extends React.Component {
                     onChangeText={(value) => this._handlePreparationInput(value)}
                 />
 
-                <TouchableOpacity style={styles.imageInput} onPress={this._saveRecipe}>
-                    <Text style={styles.imageInput_label}>Speichern</Text>
-                </TouchableOpacity>
+                <Button
+                    title="Speichern"
+                    onPress={this._saveRecipe}
+                />
 
             </ScrollView>
         );
@@ -161,28 +159,6 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: 30,
         alignItems: 'center'
-    },
-    imageInput: {
-        width: '70%',
-        backgroundColor: '#93c47d',
-        borderRadius: 8,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
-        marginBottom: 20
-    },
-    imageInput_label: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-    titleInput: {
-        height: 40,
-        width: '80%',
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        fontSize: 20,
-        margin: 10
     },
     durationInput: {
         flexDirection: 'row',

@@ -17,10 +17,9 @@ export default class Neues_Rezept extends React.Component {
             title: null,
             duration: null,
             nationality: 'none',
-            ingredients: {
-                amount: null,
-                ingredient: null
-            },
+            ingredients: [
+                { amount: null, ingredient: null }
+            ],
             preparation: null
         }
     };
@@ -34,7 +33,7 @@ export default class Neues_Rezept extends React.Component {
     _saveRecipe = () => {
         // TODO: save recipe in DB
         console.log('saved: ');
-        console.log(this.state.recipe);
+        console.log(this.state);
     }
 
     _handleTitleInput(value) {
@@ -64,29 +63,28 @@ export default class Neues_Rezept extends React.Component {
         });
     }
 
-    _handleIngredientsInput(prop, value) {
+    _handleIngredientsInput(index, prop, value) {
         // update ingredients in state.recipe
         if (prop === 'amount') {
-            this.setState(prevState => ({
-                recipe: {
-                    ...prevState.recipe,
-                    ingredients: {
-                        ...prevState.recipe.ingredients,
-                        amount: value
-                    }
-                }
-            }));
+            this.setState(prevState => {
+                let recipe = { ...prevState.recipe };
+                recipe['ingredients'][index] = {
+                    amount: value,
+                    ingredient: recipe['ingredients'][index]['ingredient']
+                };
+                return { recipe }
+            });
+
         } else
             if (prop === 'ingredient') {
-                this.setState(prevState => ({
-                    recipe: {
-                        ...prevState.recipe,
-                        ingredients: {
-                            ...prevState.recipe.ingredients,
-                            ingredient: value
-                        }
-                    }
-                }));
+                this.setState(prevState => {
+                    let recipe = { ...prevState.recipe };
+                    recipe['ingredients'][index] = {
+                        ingredient: value,
+                        amount: recipe['ingredients'][index]['amount']
+                    };
+                    return { recipe }
+                });
             }
     }
 
@@ -149,10 +147,10 @@ export default class Neues_Rezept extends React.Component {
 
                 <IngredientsInput>
                     <AmountInput
-                        onChange={(value) => this._handleIngredientsInput('amount', value)}
+                        onChange={(value) => this._handleIngredientsInput(0, 'amount', value)}
                     />
                     <IngredientInput
-                        onChange={(value) => this._handleIngredientsInput('ingredient', value)}
+                        onChange={(value) => this._handleIngredientsInput(0, 'ingredient', value)}
                     />
                 </IngredientsInput>
 

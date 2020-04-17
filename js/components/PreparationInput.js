@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 
+
 export default class PreparationInput extends React.Component {
     render() {
         return (
             <TextInput
-                style={styles.preparationInput}
+                style={styles.textInput}
                 placeholder="Zubereitung"
                 multiline={true}
                 onChangeText={this.props.onChange}
@@ -14,8 +15,9 @@ export default class PreparationInput extends React.Component {
     }
 }
 
+
 const styles = StyleSheet.create({
-    preparationInput: {
+    textInput: {
         minHeight: 40,
         width: '80%',
         borderBottomColor: 'black',

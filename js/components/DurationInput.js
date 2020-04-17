@@ -5,29 +5,30 @@ import { Text, StyleSheet, TextInput, View } from 'react-native';
 export default class DurationInput extends React.Component {
     render() {
         return (
-            <View style={styles.durationInputContainer}>
-                <Text style={styles.durationInput_label}>Dauer: </Text>
+            <View style={styles.container}>
+                <Text style={styles.label}>Dauer: </Text>
                 <TextInput
-                    style={styles.durationInput}
+                    style={styles.textInput}
                     keyboardType="number-pad"
                     onChangeText={this.props.onChange}
                 />
-                <Text style={styles.durationInput_label}> Minuten</Text>
+                <Text style={styles.label}> Minuten</Text>
             </View>
         );
     }
 }
 
+
 const styles = StyleSheet.create({
-    durationInputContainer: {
+    container: {
         flexDirection: 'row',
         alignItems: 'center',
         margin: 20
     },
-    durationInput_label: {
+    label: {
         fontSize: 20,
     },
-    durationInput: {
+    textInput: {
         height: 40,
         width: 50,
         borderBottomColor: 'black',

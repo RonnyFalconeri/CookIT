@@ -6,7 +6,7 @@ export default class TitleInput extends React.Component {
     render() {
         return (
             <TextInput
-                style={styles.titleInput}
+                style={styles.textInput}
                 placeholder="Bezeichnung"
                 onChangeText={this.props.onChange}
             />
@@ -14,8 +14,9 @@ export default class TitleInput extends React.Component {
     }
 }
 
+
 const styles = StyleSheet.create({
-    titleInput: {
+    textInput: {
         height: 40,
         width: '80%',
         borderBottomColor: 'black',

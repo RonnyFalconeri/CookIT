@@ -5,15 +5,16 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 export default class ImageInput extends React.Component {
     render() {
         return (
-            <TouchableOpacity style={styles.imageInput} >
-                <Text style={styles.imageInput_label}>Foto hochladen</Text>
+            <TouchableOpacity style={styles.button} >
+                <Text style={styles.label}>Foto hochladen</Text>
             </TouchableOpacity>
         );
     }
 }
 
+
 const styles = StyleSheet.create({
-    imageInput: {
+    button: {
         width: '70%',
         backgroundColor: '#93c47d',
         borderRadius: 8,
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
         padding: 20,
         marginBottom: 20
     },
-    imageInput_label: {
+    label: {
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold'

@@ -5,9 +5,13 @@ import { Text, StyleSheet, View, Picker } from 'react-native';
 export default class NationalityInput extends React.Component {
     render() {
         return (
-            <View style={styles.nationalityInput}>
-                <Text style={styles.nationalityInput_label}>Nationalität: </Text>
-                <Picker onValueChange={this.props.onChange} >
+            <View style={styles.container}>
+                <Text style={styles.label}>Nationalität: </Text>
+                <Picker
+                    style={styles.picker}
+                    onValueChange={this.props.onChange}
+                    selectedValue={this.props.selectedValue}
+                >
                     <Picker.Item label="Keine" value="none" />
                     <Picker.Item label="Italienisch" value="ita" />
                     <Picker.Item label="Deutsch" value="deu" />
@@ -20,12 +24,16 @@ export default class NationalityInput extends React.Component {
     }
 }
 
+
 const styles = StyleSheet.create({
-    nationalityInput: {
+    container: {
         flexDirection: 'row',
         alignItems: 'center'
     },
-    nationalityInput_label: {
+    label: {
         fontSize: 20
+    },
+    picker: {
+        width: 150
     }
 });

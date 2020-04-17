@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Text, StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 
 export default class IngredientsInput extends React.Component {
     render() {
         return (
-            <View style={{ alignItems: 'center' }}>
-                <Text style={{ fontSize: 20 }}>Zutaten: </Text>
-                <View style={{ flexDirection: 'row', margin: 10 }}>
+            <View style={styles.container}>
+                <Text style={styles.label}>Zutaten: </Text>
+                <View style={styles.row}>
                     {this.props.children}
                 </View>
-                <TouchableOpacity style={{ backgroundColor: '#93c47d', borderRadius: 50, width: 30, height: 30, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>+</Text>
+                <TouchableOpacity style={styles.addRow}>
+                    <Text style={styles.addRow_label}>+</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -20,5 +20,27 @@ export default class IngredientsInput extends React.Component {
 
 
 const styles = StyleSheet.create({
-
+    container: {
+        alignItems: 'center'
+    },
+    label: {
+        fontSize: 20
+    },
+    row: {
+        flexDirection: 'row',
+        margin: 10
+    },
+    addRow: {
+        backgroundColor: '#93c47d',
+        borderRadius: 50,
+        width: 30,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    addRow_label: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold'
+    }
 });

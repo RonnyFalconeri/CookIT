@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, ScrollView, TextInput, StyleSheet, TouchableOpacity, View, Picker, Button } from 'react-native';
+import { ScrollView, StyleSheet, Button } from 'react-native';
 
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';
@@ -12,7 +12,18 @@ import PreparationInput from '../components/PreparationInput';
 
 
 export default class Neues_Rezept extends React.Component {
-    state = {};
+    state = {
+        recipe: {
+            title: null,
+            duration: null,
+            nationality: 'none',
+            ingredients: {
+                amount: null,
+                ingredient: null
+            },
+            preparation: null
+        }
+    };
 
     componentDidMount() {
 
@@ -132,6 +143,7 @@ export default class Neues_Rezept extends React.Component {
                 />
 
                 <NationalityInput
+                    selectedValue={this.state.recipe.nationality}
                     onChange={(Value) => this._handleNationalityInput(Value)}
                 />
 
@@ -150,6 +162,11 @@ export default class Neues_Rezept extends React.Component {
 
                 <Button
                     title="Speichern"
+                    onPress={this._saveRecipe}
+                />
+
+                <Button
+                    title="Abbrechen"
                     onPress={this._saveRecipe}
                 />
 

@@ -6,8 +6,6 @@ import ImageInput from '../components/ImageInput';
 import DurationInput from '../components/DurationInput';
 import NationalityInput from '../components/NationalityInput';
 import IngredientsInput from '../components/IngredientsInput';
-import AmountInput from '../components/AmountInput';
-import IngredientInput from '../components/IngredientInput';
 import PreparationInput from '../components/PreparationInput';
 
 
@@ -18,7 +16,6 @@ export default class Neues_Rezept extends React.Component {
             duration: null,
             nationality: 'none',
             ingredients: [
-                { amount: '', ingredient: '' },
                 { amount: '', ingredient: '' },
                 { amount: '', ingredient: '' },
                 { amount: '', ingredient: '' }
@@ -58,7 +55,7 @@ export default class Neues_Rezept extends React.Component {
     }
 
     _handleNationalityInput(value) {
-        // update duration in state.recipe
+        // update nationality in state.recipe
         this.setState(prevState => {
             let recipe = { ...prevState.recipe };
             recipe['nationality'] = value;
@@ -66,55 +63,14 @@ export default class Neues_Rezept extends React.Component {
         });
     }
 
-    _handleIngredientsInput(index, prop, value) {
+    _handleIngredientsInput(ingredients) {
         // update ingredients in state.recipe
-        if (prop === 'amount') {
-            this.setState(prevState => {
-                let recipe = { ...prevState.recipe };
-                recipe['ingredients'][index] = {
-                    amount: value,
-                    ingredient: recipe['ingredients'][index]['ingredient']
-                };
-                return { recipe }
-            });
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['ingredients'] = ingredients;
+            return { recipe }
+        });
 
-        } else
-            if (prop === 'ingredient') {
-                this.setState(prevState => {
-                    let recipe = { ...prevState.recipe };
-                    recipe['ingredients'][index] = {
-                        ingredient: value,
-                        amount: recipe['ingredients'][index]['amount']
-                    };
-                    return { recipe }
-                });
-            }
-    }
-
-    _handleAmountInput(value) {
-        // update amount in state.recipe
-        this.setState(prevState => ({
-            recipe: {
-                ...prevState.recipe,
-                ingredients: {
-                    ...prevState.recipe.ingredients,
-                    amount: value
-                }
-            }
-        }));
-    }
-
-    _handleIngredientInput(value) {
-        // update ingredient in state.recipe
-        this.setState(prevState => ({
-            recipe: {
-                ...prevState.recipe,
-                ingredients: {
-                    ...prevState.recipe.ingredients,
-                    ingredient: value
-                }
-            }
-        }));
     }
 
     _handlePreparationInput(value) {
@@ -128,22 +84,6 @@ export default class Neues_Rezept extends React.Component {
     }
 
     render() {
-
-        let ingredients = this.state.recipe.ingredients.map((a, i) => {
-            return (
-                <View key={'view_' + i} style={{ flexDirection: 'row', padding: 0, margin: 0 }}>
-                    <AmountInput
-                        value={a.amount}
-                        onChange={(value) => this._handleIngredientsInput(i, 'amount', value)}
-                    />
-                    <IngredientInput
-                        value={a.ingredient}
-                        onChange={(value) => this._handleIngredientsInput(i, 'ingredient', value)}
-                    />
-                </View>
-            );
-        });
-
 
         return (
             <ScrollView contentContainerStyle={styles.container}>
@@ -164,9 +104,10 @@ export default class Neues_Rezept extends React.Component {
                     onChange={(Value) => this._handleNationalityInput(Value)}
                 />
 
-                <IngredientsInput>
-                    {ingredients}
-                </IngredientsInput>
+                <IngredientsInput
+                    ingredient_list={this.state.recipe.ingredients}
+                    onChange={(ingredients) => this._handleIngredientsInput(ingredients)}
+                />
 
                 <PreparationInput
                     onChange={(value) => this._handlePreparationInput(value)}

@@ -5,11 +5,11 @@ import AmountInput from '../components/AmountInput';
 import IngredientInput from '../components/IngredientInput';
 
 export default class IngredientsInput extends React.Component {
-    state = {};
+    state = { ingredients: [] };
 
     componentDidMount() {
 
-        this.setState({ ingredients: this.props.ingredient_list }, () => console.log(Array(this.state.ingredients)[0]));
+        this.setState({ ingredients: this.props.ingredient_list });
 
     }
 
@@ -17,7 +17,7 @@ export default class IngredientsInput extends React.Component {
         // update ingredients in state.recipe
         if (key === 'amount') {
             this.setState(prevState => {
-                let ingredients = { ...prevState.ingredients };
+                let ingredients = [...prevState.ingredients];
                 ingredients[index] = {
                     amount: value,
                     ingredient: ingredients[index]['ingredient']
@@ -28,7 +28,7 @@ export default class IngredientsInput extends React.Component {
         } else
             if (key === 'ingredient') {
                 this.setState(prevState => {
-                    let ingredients = { ...prevState.ingredients };
+                    let ingredients = [...prevState.ingredients];
                     ingredients[index] = {
                         amount: ingredients[index]['amount'],
                         ingredient: value
@@ -40,7 +40,7 @@ export default class IngredientsInput extends React.Component {
 
     render() {
 
-        let ingredients = Array(this.props.ingredient_list).map((key, i) => {
+        let ingredients = this.state.ingredients.map((key, i) => {
             return (
                 <View key={'view_' + i} style={{ flexDirection: 'row', padding: 0, margin: 0 }}>
                     <AmountInput
@@ -65,7 +65,7 @@ export default class IngredientsInput extends React.Component {
                 </View>
 
                 <View style={styles.controls}>
-                    <TouchableOpacity style={styles.delRow} onPress={() => console.log(Array(this.state.ingredients)[0])}>
+                    <TouchableOpacity style={styles.delRow} onPress={() => console.log(this.state.ingredients)}>
                         <Text style={styles.addRow_label}>-</Text>
                     </TouchableOpacity>
 

@@ -16,8 +16,6 @@ export default class Neues_Rezept extends React.Component {
             duration: null,
             nationality: 'none',
             ingredients: [
-                { amount: '', ingredient: '' },
-                { amount: '', ingredient: '' },
                 { amount: '', ingredient: '' }
             ],
             preparation: null

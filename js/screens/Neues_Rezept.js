@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Button } from 'react-native';
+import { ScrollView, StyleSheet, Button, View } from 'react-native';
 
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';
@@ -18,7 +18,10 @@ export default class Neues_Rezept extends React.Component {
             duration: null,
             nationality: 'none',
             ingredients: [
-                { amount: null, ingredient: null }
+                { amount: '', ingredient: '' },
+                { amount: '', ingredient: '' },
+                { amount: '', ingredient: '' },
+                { amount: '', ingredient: '' }
             ],
             preparation: null
         }
@@ -126,6 +129,22 @@ export default class Neues_Rezept extends React.Component {
 
     render() {
 
+        let ingredients = this.state.recipe.ingredients.map((a, i) => {
+            return (
+                <View key={'view_' + i} style={{ flexDirection: 'row', padding: 0, margin: 0 }}>
+                    <AmountInput
+                        value={a.amount}
+                        onChange={(value) => this._handleIngredientsInput(i, 'amount', value)}
+                    />
+                    <IngredientInput
+                        value={a.ingredient}
+                        onChange={(value) => this._handleIngredientsInput(i, 'ingredient', value)}
+                    />
+                </View>
+            );
+        });
+
+
         return (
             <ScrollView contentContainerStyle={styles.container}>
 
@@ -146,12 +165,7 @@ export default class Neues_Rezept extends React.Component {
                 />
 
                 <IngredientsInput>
-                    <AmountInput
-                        onChange={(value) => this._handleIngredientsInput(0, 'amount', value)}
-                    />
-                    <IngredientInput
-                        onChange={(value) => this._handleIngredientsInput(0, 'ingredient', value)}
-                    />
+                    {ingredients}
                 </IngredientsInput>
 
                 <PreparationInput

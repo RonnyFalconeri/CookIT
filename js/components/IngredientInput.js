@@ -9,6 +9,7 @@ export default class IngredientInput extends React.Component {
                 style={styles.textInput}
                 placeholder="Zutat"
                 onChangeText={this.props.onChange}
+                value={this.props.value}
             />
         );
     }
@@ -22,6 +23,6 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         fontSize: 20,
-        margin: 10
+        marginHorizontal: 10
     }
 });

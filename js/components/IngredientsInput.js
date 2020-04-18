@@ -4,12 +4,21 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import AmountInput from '../components/AmountInput';
 import IngredientInput from '../components/IngredientInput';
 
+
 export default class IngredientsInput extends React.Component {
     state = { ingredients: [] };
 
     componentDidMount() {
 
+        // init ingredients array
         this.setState({ ingredients: this.props.ingredient_list });
+
+        // if 1 row -> hide delRow button
+        if (this.props.ingredient_list.length > 1) {
+            this.setState({ delRowVisible: 'flex' });
+        } else {
+            this.setState({ delRowVisible: 'none' });
+        }
 
     }
 
@@ -38,11 +47,40 @@ export default class IngredientsInput extends React.Component {
             }
     }
 
+    _addIngredientRow() {
+        this.setState(prevState => {
+            let ingredients = [...prevState.ingredients];
+            ingredients.push({ amount: '', ingredient: '' });
+            return { ingredients }
+        }, () => {
+            if (this.state.ingredients.length > 1) {
+                this.setState({ delRowVisible: 'flex' });
+            }
+        });
+    }
+
+    _deleteIngredientRow() {
+        if (this.state.ingredients.length > 1) {
+            this.setState(prevState => {
+                let ingredients = [...prevState.ingredients];
+                ingredients.pop();
+                return { ingredients }
+            }, () => {
+                this.props.onChange(this.state.ingredients);
+
+                // if 1 row left -> hide delRow button
+                if (this.state.ingredients.length == 1) {
+                    this.setState({ delRowVisible: 'none' });
+                }
+            });
+        }
+    }
+
     render() {
 
         let ingredients = this.state.ingredients.map((key, i) => {
             return (
-                <View key={'view_' + i} style={{ flexDirection: 'row', padding: 0, margin: 0 }}>
+                <View key={'view_' + i} style={styles.row}>
                     <AmountInput
                         value={key.amount}
                         onChange={(value) => this._handleIngredientsInput(i, 'amount', value)}
@@ -60,16 +98,16 @@ export default class IngredientsInput extends React.Component {
 
                 <Text style={styles.label}>Zutaten:</Text>
 
-                <View style={styles.row}>
+                <View style={styles.list}>
                     {ingredients}
                 </View>
 
                 <View style={styles.controls}>
-                    <TouchableOpacity style={styles.delRow} onPress={() => console.log(this.state.ingredients)}>
+                    <TouchableOpacity style={[styles.delRow, { display: this.state.delRowVisible }]} onPress={() => this._deleteIngredientRow()}>
                         <Text style={styles.addRow_label}>-</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.addRow}>
+                    <TouchableOpacity style={styles.addRow} onPress={() => this._addIngredientRow()}>
                         <Text style={styles.addRow_label}>+</Text>
                     </TouchableOpacity>
                 </View>
@@ -93,9 +131,14 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 20
     },
-    row: {
+    list: {
         flexDirection: 'column',
         margin: 5
+    },
+    row: {
+        flexDirection: 'row',
+        padding: 0,
+        margin: 0
     },
     controls: {
         flexDirection: 'row',
@@ -124,6 +167,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 5,
-        marginRight: 5,
+        marginRight: 5
     }
 });

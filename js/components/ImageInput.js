@@ -1,27 +1,128 @@
 import * as React from 'react';
 import { TouchableOpacity, StyleSheet, Alert, ImageBackground, View, Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
 
 export default class ImageInput extends React.Component {
+    state = {
+        image_default: require('../../assets/images/recipe_default_image.png'),
+        image_delivered: null,
+        image_picked: null,
+        image_show: null
+    };
+
+    componentDidMount() {
+
+        this.getPermissionAsync();
+
+        // if no image delivered as parameter -> show default image
+        this.setState({ image_show: this.state.image_default });
+        this.setState({ image_delivered: this.props.image });
+        if (this.props.image != null) {
+            this.setState({ image_show: this.state.image_delivered });
+        }
+
+    }
+
+
+    getPermissionAsync = async () => {
+        // get permissions for camera and camera roll
+        const { status, expires, permissions } = await Permissions.getAsync(
+            Permissions.CAMERA,
+            Permissions.CAMERA_ROLL
+        );
+        if (status !== 'granted') {
+            alert('Hey! You have not enabled selected permissions');
+        }
+    };
+
+    _deleteImage() {
+        this.setState({
+            image_picked: null,
+            image_show: this.state.image_default,
+        });
+    }
+
+    _takeImage = async () => {
+        // opens camera for taking a picture
+        try {
+            let result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [16, 9],
+                quality: 1,
+            });
+
+            if (!result.cancelled) {
+                this.setState({ image_picked: result.uri });
+            }
+
+            console.log(result);
+        } catch (E) {
+            console.log(E);
+        }
+    };
+
+    _pickImage = async () => {
+        // shows images from camera roll to select
+        try {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [16, 9],
+                quality: 1,
+            });
+            if (!result.cancelled) {
+                this.setState({ image_picked: result.uri });
+            }
+
+            // CameraRoll.saveToCameraRoll(this.state.image);
+            console.log(result);
+        } catch (E) {
+            console.log(E);
+        }
+    };
+
+
     render() {
+
+        // dependend on current shown image, render different image component with different source
+        let recipeImage = Array(this.state.ingredients).map(() => {
+            if (this.state.image_picked === null) {
+                return (
+                    <Image
+                        key={'default'}
+                        style={styles.recipeImage_style}
+                        source={this.state.image_show}
+                    />
+                );
+            } else {
+                return (
+                    <Image
+                        key={'picked'}
+                        style={styles.recipeImage_style}
+                        source={{ uri: this.state.image_picked }}
+                    />
+                );
+            }
+        });
+
         return (
             <View style={styles.container}>
 
                 <View style={styles.recipeImage}>
-                    <Image
-                        style={styles.recipeImage_style}
-                        source={require('../../assets/images/recipe_default_image.png')}
-                    />
+                    {recipeImage}
                 </View>
 
 
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() =>
-                        Alert.alert('Foto hochladen', '', [
-                            { text: 'Aus Galerie auswählen' },
-                            { text: 'Bild aufnehmen' },
-                            { text: 'Bild entfernen', style: 'destructive' },
+                        Alert.alert('Bild hochladen', '', [
+                            { text: 'Kamera', onPress: () => this._takeImage() },
+                            { text: 'Aus Galerie', onPress: () => this._pickImage() },
+                            { text: 'Bild entfernen', style: 'destructive', onPress: () => this._deleteImage() },
                             { text: 'Abbrechen', style: 'cancel' }
                         ])
                     }

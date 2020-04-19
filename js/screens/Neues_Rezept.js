@@ -12,6 +12,7 @@ import PreparationInput from '../components/PreparationInput';
 export default class Neues_Rezept extends React.Component {
     state = {
         recipe: {
+            image: null,
             title: null,
             duration: null,
             nationality: 'none',
@@ -87,7 +88,9 @@ export default class Neues_Rezept extends React.Component {
             <ScrollView contentContainerStyle={styles.container}>
 
 
-                <ImageInput />
+                <ImageInput
+                    image={this.state.recipe.image}
+                />
 
                 <TitleInput
                     onChange={(value) => this._handleTitleInput(value)}

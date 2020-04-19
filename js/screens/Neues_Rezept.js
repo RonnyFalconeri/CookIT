@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Button, View } from 'react-native';
+import { ScrollView, StyleSheet, Button } from 'react-native';
 
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';

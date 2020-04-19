@@ -78,6 +78,7 @@ export default class IngredientsInput extends React.Component {
 
     render() {
 
+        // render variable amount of rows
         let ingredients = this.state.ingredients.map((key, i) => {
             return (
                 <View key={'view_' + i} style={styles.row}>

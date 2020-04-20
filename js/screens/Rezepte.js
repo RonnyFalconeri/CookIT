@@ -16,7 +16,8 @@ export default class Rezepte extends React.Component {
                     { amount: '100g', ingredient: 'Spaghetti' },
                     { amount: '3', ingredient: 'Tomaten' }
                 ],
-                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+                favorite: true
             },
             {
                 image: null,
@@ -29,7 +30,8 @@ export default class Rezepte extends React.Component {
                     { amount: '2', ingredient: 'Sahne' }
 
                 ],
-                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.'
+                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.',
+                favorite: false
             }, {
                 image: null,
                 title: 'Quacamole',
@@ -41,7 +43,8 @@ export default class Rezepte extends React.Component {
                     { amount: '1', ingredient: 'Zwiebel' },
                     { amount: '2', ingredient: 'Chilli' }
                 ],
-                preparation: '15 Minuten Kochen, dann salzen.'
+                preparation: '15 Minuten Kochen, dann salzen.',
+                favorite: false
             }
         ]
     };
@@ -62,6 +65,7 @@ export default class Rezepte extends React.Component {
                     duration={recipe.duration}
                     nationality={recipe.nationality}
                     image={recipe.image}
+                    favorite={recipe.favorite}
                     onPress={() => this.props.navigation.navigate('Rezept', { recipe })}
                 />
             );

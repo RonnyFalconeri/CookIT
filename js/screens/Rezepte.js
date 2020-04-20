@@ -7,9 +7,38 @@ import Rezepte_ListItem from '../components/Rezepte_ListItem';
 export default class Rezepte extends React.Component {
     state = {
         recipes: [
-            { title: "Spaghetti Bolognese", duration: "14 Min", nationality: "ITA", image: null },
-            { title: "Spaghetti Bolognese", duration: "14 Min", nationality: "ITA", image: null },
-            { title: "Spaghetti Bolognese", duration: "14 Min", nationality: "ITA", image: null }
+            {
+                image: null,
+                title: 'Spaghetti Bolognese',
+                duration: '14 Min',
+                nationality: 'ita',
+                ingredients: [
+                    { amount: '100g', ingredient: 'Spaghetti' },
+                    { amount: '3', ingredient: 'Tomaten' }
+                ],
+                preparation: '15 Minuten Kochen, dann salzen.'
+            },
+            {
+                image: null,
+                title: 'Spaghetti Bolognese',
+                duration: '14 Min',
+                nationality: 'ita',
+                ingredients: [
+                    { amount: '100g', ingredient: 'Spaghetti' },
+                    { amount: '3', ingredient: 'Tomaten' }
+                ],
+                preparation: '15 Minuten Kochen, dann salzen.'
+            }, {
+                image: null,
+                title: 'Spaghetti Bolognese',
+                duration: '14 Min',
+                nationality: 'ita',
+                ingredients: [
+                    { amount: '100g', ingredient: 'Spaghetti' },
+                    { amount: '3', ingredient: 'Tomaten' }
+                ],
+                preparation: '15 Minuten Kochen, dann salzen.'
+            }
         ]
     };
 
@@ -21,15 +50,15 @@ export default class Rezepte extends React.Component {
 
     render() {
 
-        let recipes = this.state.recipes.map((key, i) => {
+        let recipes = this.state.recipes.map((recipe, i) => {
             return (
-                < Rezepte_ListItem
+                <Rezepte_ListItem
                     key={'recipe_' + i}
-                    title={key.title}
-                    duration={key.duration}
-                    nationality={key.nationality}
-                    image={key.image}
-                    onPress={() => this.props.navigation.navigate('Rezept')}
+                    title={recipe.title}
+                    duration={recipe.duration}
+                    nationality={recipe.nationality}
+                    image={recipe.image}
+                    onPress={() => this.props.navigation.navigate('Rezept', { recipe })}
                 />
             );
         });

@@ -16,26 +16,30 @@ export default class Rezepte extends React.Component {
                     { amount: '100g', ingredient: 'Spaghetti' },
                     { amount: '3', ingredient: 'Tomaten' }
                 ],
-                preparation: '15 Minuten Kochen, dann salzen.'
+                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
             },
             {
                 image: null,
-                title: 'Spaghetti Bolognese',
-                duration: '14 Min',
+                title: 'Spaghetti Carbonara',
+                duration: '15 Min',
                 nationality: 'ita',
                 ingredients: [
-                    { amount: '100g', ingredient: 'Spaghetti' },
-                    { amount: '3', ingredient: 'Tomaten' }
+                    { amount: '200g', ingredient: 'Spaghetti' },
+                    { amount: '10g', ingredient: 'Bauchspeck geschnitten' },
+                    { amount: '2', ingredient: 'Sahne' }
+
                 ],
-                preparation: '15 Minuten Kochen, dann salzen.'
+                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.'
             }, {
                 image: null,
-                title: 'Spaghetti Bolognese',
-                duration: '14 Min',
-                nationality: 'ita',
+                title: 'Quacamole',
+                duration: '4 Min',
+                nationality: 'gre',
                 ingredients: [
-                    { amount: '100g', ingredient: 'Spaghetti' },
-                    { amount: '3', ingredient: 'Tomaten' }
+                    { amount: '2', ingredient: 'Avocados' },
+                    { amount: '3', ingredient: 'Tomaten' },
+                    { amount: '1', ingredient: 'Zwiebel' },
+                    { amount: '2', ingredient: 'Chilli' }
                 ],
                 preparation: '15 Minuten Kochen, dann salzen.'
             }

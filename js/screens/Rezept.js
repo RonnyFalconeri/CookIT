@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import Separator from '../components/Separator';
 
 
 export default class Rezept extends React.Component {
@@ -45,45 +46,53 @@ export default class Rezept extends React.Component {
         });
 
         return (
-            <View style={styles.container}>
 
-                <Image
-                    style={styles.image}
-                    source={this.state.recipe.image}
-                />
+            <ScrollView >
+                <View style={styles.container}>
 
-                <Text style={styles.title}>
-                    {this.state.recipe.title}
-                </Text>
 
-                <View style={styles.containerDurationNationality}>
-                    <Text>
+                    <Image
+                        style={styles.image}
+                        source={this.state.recipe.image}
+                    />
+
+                    <Text style={styles.title}>
+                        {this.state.recipe.title}
+                    </Text>
+
+                    <View style={styles.containerDurationNationality}>
                         <Text style={styles.duration}>{this.state.recipe.duration}</Text>
                         <Text style={styles.separator}> | </Text>
                         <Text style={styles.nationality}>{this.state.recipe.nationality}</Text>
-                    </Text>
-                </View>
+                    </View>
 
-                <View style={styles.containerIngredients}>
-                    <Text style={styles.ingredients_label}>Zutaten</Text>
-                    {ingredients}
-                </View>
+                    <Separator />
 
-                <View style={styles.containerPreparation}>
-                    <Text style={styles.preparation_label}>Zubereitung</Text>
-                    <Text style={styles.preparation}>{this.state.recipe.preparation}</Text>
-                </View>
+                    <View style={styles.containerIngredients}>
+                        <Text style={styles.ingredients_label}>Zutaten</Text>
+                        {ingredients}
+                    </View>
 
-            </View>
+                    <Separator />
+
+                    <View style={styles.containerPreparation}>
+                        <Text style={styles.preparation_label}>Zubereitung</Text>
+                        <Text style={styles.preparation}>{this.state.recipe.preparation}</Text>
+                    </View>
+
+
+                </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: '100%',
         alignItems: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingBottom: 30
     },
     image: {
         height: 200,
@@ -97,23 +106,26 @@ const styles = StyleSheet.create({
     },
     containerDurationNationality: {
         flexDirection: 'row',
-        margin: 10
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
     },
     duration: {
-        maxWidth: 50,
-        minWidth: 50,
-        fontSize: 20,
-        paddingHorizontal: 20
+        width: 100,
+        fontSize: 18,
+        paddingHorizontal: 20,
+        textAlign: 'right'
     },
     separator: {
+        width: 70,
         fontSize: 25,
-        fontWeight: '300'
+        fontWeight: '300',
+        textAlign: 'center'
     },
     nationality: {
-        maxWidth: 50,
-        minWidth: 50,
+        width: 100,
         fontSize: 20,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        textAlign: 'left'
     },
     containerIngredients: {
         flexDirection: 'column',
@@ -121,7 +133,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#c3e9b1',
         borderRadius: 10,
         padding: 10,
-        marginTop: 10
+        marginVertical: 5
     },
     rowIngredients: {
         flexDirection: 'row',
@@ -148,9 +160,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     containerPreparation: {
-        flexDirection: 'column', width: '80%',
-        padding: 10,
-        marginVertical: 20
+        flexDirection: 'column',
+        width: '80%',
+        marginVertical: 5
     },
     preparation_label: {
         fontSize: 23,
@@ -159,7 +171,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     preparation: {
+        flex: 1,
         padding: 5,
-        fontSize: 18
+        fontSize: 18,
+        textAlign: 'center'
     }
 });

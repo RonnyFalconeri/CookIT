@@ -1,13 +1,8 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, DevSettings } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import Rezepte_ListItem from '../components/Rezepte_ListItem';
 
-const recipes = [
-    { title: "Spaghetti Bolognese", duration: "14 Min", nationality: "ITA", image: null },
-    { title: "Spaghetti Bolognese", duration: "14 Min", nationality: "ITA", image: null },
-    { title: "Spaghetti Bolognese", duration: "14 Min", nationality: "ITA", image: null }
-];
 
 export default class Rezepte extends React.Component {
     state = {

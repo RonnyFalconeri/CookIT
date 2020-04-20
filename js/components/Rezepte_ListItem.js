@@ -3,14 +3,28 @@ import { Text, TouchableOpacity, StyleSheet, Image, View } from 'react-native';
 
 
 export default class Rezepte_ListItem extends React.Component {
+    state = {
+        image_default: require('../../assets/images/recipe_default_image.png'),
+        image_delivered: null,
+        image_show: null
+    };
+
+    componentDidMount() {
+        if (this.props.image == null) {
+            this.setState({ image_show: this.state.image_default });
+        } else {
+            this.setState({ image_show: this.props.image });
+        }
+    }
+
     render() {
         return (
-            <TouchableOpacity style={styles.listItem_container} onPress={this.props.onPress}>
-                <Image style={styles.listItem_image} source={this.props.image} />
-                <Text style={styles.listItem_title} >{this.props.title}</Text>
+            <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
+                <Image style={styles.image} source={this.state.image_show} />
+                <Text style={styles.title} >{this.props.title}</Text>
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={styles.listItem_duration}>{this.props.duration}</Text>
-                    <Text style={styles.listItem_nationality}>{this.props.nationality}</Text>
+                    <Text style={styles.duration}>{this.props.duration}</Text>
+                    <Text style={styles.nationality}>{this.props.nationality}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -19,7 +33,7 @@ export default class Rezepte_ListItem extends React.Component {
 
 
 const styles = StyleSheet.create({
-    listItem_container: {
+    container: {
         alignItems: 'center',
         backgroundColor: '#6d9eeb',
         padding: 20,
@@ -38,26 +52,26 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    listItem_title: {
+    title: {
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
         width: 170,
         textAlign: 'center'
     },
-    listItem_image: {
+    image: {
         width: 90,
-        height: 70,
+        height: 60,
         borderWidth: 1,
         borderRadius: 2
     },
-    listItem_duration: {
+    duration: {
         fontSize: 15,
         fontWeight: 'bold',
         color: 'white',
         paddingBottom: 10
     },
-    listItem_nationality: {
+    nationality: {
         fontSize: 15,
         fontWeight: 'bold',
         color: 'white',

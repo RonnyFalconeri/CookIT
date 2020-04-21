@@ -38,7 +38,7 @@ export default class Rezepte_ListItem extends React.Component {
                 {image}
                 <Text style={styles.title} >{this.props.title}</Text>
                 <View style={styles.column}>
-                    <Text style={styles.duration}>{this.props.duration}</Text>
+                    <Text style={styles.duration}>{this.props.duration} Min</Text>
                     <Text style={styles.nationality}>{this.props.nationality}</Text>
                 </View>
             </TouchableOpacity>

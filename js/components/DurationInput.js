@@ -10,6 +10,7 @@ export default class DurationInput extends React.Component {
                 <TextInput
                     style={styles.textInput}
                     keyboardType="number-pad"
+                    value={this.props.value}
                     onChangeText={this.props.onChange}
                 />
                 <Text style={styles.label}> Minuten</Text>
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     label: {
-        fontSize: 20,
+        fontSize: 20
     },
     textInput: {
         height: 40,
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         fontSize: 20,
-        margin: 10
+        margin: 10,
+        textAlign: 'center'
     }
 });

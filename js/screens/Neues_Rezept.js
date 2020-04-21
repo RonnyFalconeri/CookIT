@@ -13,20 +13,30 @@ export default class Neues_Rezept extends React.Component {
     state = {
         recipe: {
             image: null,
-            title: null,
-            duration: null,
+            title: '',
+            duration: '',
             nationality: 'none',
             ingredients: [
                 { amount: '', ingredient: '' }
             ],
-            preparation: null
-        }
+            preparation: ''
+        },
+        edit: false
     };
 
     componentDidMount() {
 
         // change header title
         this.props.navigation.setOptions({ title: 'Neues Rezept' });
+
+        // determine editmode
+        this.setState({ edit: this.props.route.params.edit });
+
+        // store recipe, if given
+        if (this.props.route.params.recipe != undefined) {
+            this.setState({ recipe: this.props.route.params.recipe });
+        }
+
     }
 
     _saveRecipe = () => {
@@ -93,10 +103,12 @@ export default class Neues_Rezept extends React.Component {
                 />
 
                 <TitleInput
+                    value={this.state.recipe.title}
                     onChange={(value) => this._handleTitleInput(value)}
                 />
 
                 <DurationInput
+                    value={this.state.recipe.duration}
                     onChange={(value) => this._handleDurationInput(value)}
                 />
 
@@ -111,6 +123,7 @@ export default class Neues_Rezept extends React.Component {
                 />
 
                 <PreparationInput
+                    value={this.state.recipe.preparation}
                     onChange={(value) => this._handlePreparationInput(value)}
                 />
 

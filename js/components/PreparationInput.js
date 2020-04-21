@@ -8,6 +8,7 @@ export default class PreparationInput extends React.Component {
             <TextInput
                 style={styles.textInput}
                 placeholder="Zubereitung"
+                value={this.props.value}
                 multiline={true}
                 onChangeText={this.props.onChange}
             />
@@ -18,7 +19,6 @@ export default class PreparationInput extends React.Component {
 
 const styles = StyleSheet.create({
     textInput: {
-        minHeight: 40,
         width: '80%',
         borderBottomColor: 'black',
         borderBottomWidth: 1,

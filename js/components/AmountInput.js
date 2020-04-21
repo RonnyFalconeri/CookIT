@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         fontSize: 20,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        textAlign: 'right'
     }
 });

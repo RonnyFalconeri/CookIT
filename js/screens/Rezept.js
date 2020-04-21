@@ -69,13 +69,15 @@ export default class Rezept extends React.Component {
                             {this.state.recipe.title}
                         </Text>
 
-                        <EditButton />
+                        <EditButton
+                            onPress={() => this.props.navigation.navigate('Neues_Rezept', { recipe: this.state.recipe, edit: true })}
+                        />
                     </View>
 
 
 
                     <View style={styles.containerDurationNationality}>
-                        <Text style={styles.duration}>{this.state.recipe.duration}</Text>
+                        <Text style={styles.duration}>{this.state.recipe.duration} Min</Text>
                         <Text style={styles.separator}> | </Text>
                         <Text style={styles.nationality}>{this.state.recipe.nationality}</Text>
                     </View>

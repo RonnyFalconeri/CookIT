@@ -10,7 +10,7 @@ export default class Rezepte extends React.Component {
             {
                 image: null,
                 title: 'Spaghetti Bolognese',
-                duration: '14 Min',
+                duration: '14',
                 nationality: 'ita',
                 ingredients: [
                     { amount: '100g', ingredient: 'Spaghetti' },
@@ -22,7 +22,7 @@ export default class Rezepte extends React.Component {
             {
                 image: null,
                 title: 'Spaghetti Carbonara',
-                duration: '15 Min',
+                duration: '15',
                 nationality: 'ita',
                 ingredients: [
                     { amount: '200g', ingredient: 'Spaghetti' },
@@ -35,7 +35,7 @@ export default class Rezepte extends React.Component {
             }, {
                 image: null,
                 title: 'Quacamole',
-                duration: '4 Min',
+                duration: '4',
                 nationality: 'gre',
                 ingredients: [
                     { amount: '2', ingredient: 'Avocados' },

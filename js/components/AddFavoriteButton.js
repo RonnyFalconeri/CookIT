@@ -37,7 +37,7 @@ export default class AddFavoriteButton extends React.Component {
         return (
 
             <TouchableOpacity
-                style={{ position: 'absolute', top: 17, left: 20 }}
+                style={this.props.styling}
                 onPress={this.props.onPress}
             >
                 {image}

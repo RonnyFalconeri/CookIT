@@ -6,7 +6,8 @@ export default class Rezepte_ListItem extends React.Component {
     state = {
         image_default: require('../../assets/images/recipe_default_image.png'),
         image_delivered: null,
-        image_show: null
+        image_show: null,
+        fav: require('../../assets/images/addFavoriteIcon2.png')
     };
 
     componentDidMount() {
@@ -18,11 +19,25 @@ export default class Rezepte_ListItem extends React.Component {
     }
 
     render() {
+
+        let image = Array(this.state).map(() => {
+            if (this.props.favorite) {
+                return (
+                    <Image
+                        key={'fav'}
+                        style={styles.fav_image}
+                        source={this.state.fav}
+                    />
+                );
+            }
+        });
+
         return (
             <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
                 <Image style={styles.image} source={this.state.image_show} />
+                {image}
                 <Text style={styles.title} >{this.props.title}</Text>
-                <View style={{ alignItems: 'center' }}>
+                <View style={styles.column}>
                     <Text style={styles.duration}>{this.props.duration}</Text>
                     <Text style={styles.nationality}>{this.props.nationality}</Text>
                 </View>
@@ -52,6 +67,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
+    column: {
+        alignItems: 'center'
+    },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -65,6 +83,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 2
     },
+    fav_image: { width: 40, height: 40, position: 'absolute', top: 50, left: 85 },
     duration: {
         fontSize: 15,
         fontWeight: 'bold',

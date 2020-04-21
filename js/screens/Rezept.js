@@ -60,10 +60,11 @@ export default class Rezept extends React.Component {
                     />
 
                     <AddFavoriteButton
+                        styling={{ position: 'absolute', top: 17, left: 20 }}
                         favorite={this.state.recipe.favorite}
                     />
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'center' }}>
+                    <View style={styles.containerTitle}>
                         <Text style={styles.title}>
                             {this.state.recipe.title}
                         </Text>
@@ -111,6 +112,12 @@ const styles = StyleSheet.create({
         height: 200,
         width: '100%',
         justifyContent: 'flex-start'
+    },
+    containerTitle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '90%',
+        justifyContent: 'center'
     },
     title: {
         fontSize: 27,

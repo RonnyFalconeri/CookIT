@@ -21,12 +21,15 @@ export default class Rezept extends React.Component {
         image_default: require('../../assets/images/recipe_default_image.png')
     };
 
+
+
     componentDidMount() {
 
         // change header title
         this.props.navigation.setOptions({ title: 'Rezept' });
         this.setState({ recipe: this.props.route.params.recipe });
 
+        console.log(this.props.route.params.recipe);
         if (this.props.route.params.recipe.image == null) {
             this.setState(prevState => {
                 let recipe = { ...prevState.recipe };
@@ -35,6 +38,22 @@ export default class Rezept extends React.Component {
             }, () => console.log(this.state.recipe));
         }
     }
+
+    /*constructor(props) {
+        super(props);
+        this.state = {
+            recipe: props.route.params.recipe
+        }
+    }
+    
+    componentDidUpdate() {
+        this.state = {
+            recipe: this.props.route.params?.recipe
+        }
+        console.log(this.props.route.params?.recipe);
+        console.log(this.state.recipe);
+    }*/
+
 
     render() {
 

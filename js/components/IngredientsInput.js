@@ -6,23 +6,28 @@ import IngredientInput from '../components/IngredientInput';
 
 
 export default class IngredientsInput extends React.Component {
-    state = { ingredients: [] };
+    state = {
+        ingredients: [
+            { amount: '', ingredient: '' }
+        ]
+    };
 
     componentDidMount() {
-
+        console.log(this.state.ingredients);
         // init ingredients array
-        this.setState({ ingredients: this.props.ingredient_list });
-
-        // if 1 row -> hide delRow button
-        if (this.props.ingredient_list.length > 1) {
-            this.setState({ delRowVisible: 'flex' });
-        } else {
-            this.setState({ delRowVisible: 'none' });
-        }
+        this.setState({ ingredients: this.props.ingredient_list }, () => {
+            // if 1 row -> hide delRow button
+            if (this.props.ingredient_list.length > 1) {
+                this.setState({ delRowVisible: 'flex' });
+            } else {
+                this.setState({ delRowVisible: 'none' });
+            }
+        });
 
     }
 
     _handleIngredientsInput(index, key, value) {
+        console.log(this.state.ingredients);
         // update ingredients in state.recipe
         if (key === 'amount') {
             this.setState(prevState => {
@@ -48,11 +53,15 @@ export default class IngredientsInput extends React.Component {
     }
 
     _addIngredientRow() {
+        console.log('add row...');
         this.setState(prevState => {
             let ingredients = [...prevState.ingredients];
             ingredients.push({ amount: '', ingredient: '' });
             return { ingredients }
         }, () => {
+            console.log(this.state.ingredients);
+            this.props.onChange(this.state.ingredients);
+
             if (this.state.ingredients.length > 1) {
                 this.setState({ delRowVisible: 'flex' });
             }
@@ -60,6 +69,9 @@ export default class IngredientsInput extends React.Component {
     }
 
     _deleteIngredientRow() {
+        console.log('delete row...');
+        console.log(this.state.ingredients);
+        console.log(this.state.ingredients.length);
         if (this.state.ingredients.length > 1) {
             this.setState(prevState => {
                 let ingredients = [...prevState.ingredients];

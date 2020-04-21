@@ -19,7 +19,8 @@ export default class Neues_Rezept extends React.Component {
             ingredients: [
                 { amount: '', ingredient: '' }
             ],
-            preparation: ''
+            preparation: '',
+            favorite: null
         },
         edit: false
     };
@@ -41,8 +42,7 @@ export default class Neues_Rezept extends React.Component {
 
     _saveRecipe = () => {
         // TODO: save recipe in DB
-        console.log('saved: ');
-        console.log(this.state);
+        this.props.navigation.navigate('Rezept', this.state.recipe);
     }
 
     _handleTitleInput(value) {
@@ -129,7 +129,7 @@ export default class Neues_Rezept extends React.Component {
 
                 <Button
                     title="Speichern"
-                    onPress={this._saveRecipe}
+                    onPress={() => this.props.navigation.navigate('Rezept', { recipe: this.state.recipe })}
                 />
 
                 <Button

@@ -88,7 +88,7 @@ export default class ImageInput extends React.Component {
     render() {
 
         // dependend on current shown image, render different image component with different source
-        let recipeImage = Array(this.state.ingredients).map(() => {
+        let recipeImage = Array(this.state).map(() => {
             if (this.state.image_picked === null) {
                 return (
                     <Image

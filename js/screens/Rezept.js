@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import Separator from '../components/Separator';
 import AddFavoriteButton from '../components/AddFavoriteButton';
 import EditButton from '../components/EditButton';
@@ -16,7 +16,7 @@ export default class Rezept extends React.Component {
                 { amount: '', ingredient: '' }
             ],
             preparation: null,
-            favorite: false
+            favorite: null
         },
         image_default: require('../../assets/images/recipe_default_image.png')
     };
@@ -63,7 +63,7 @@ export default class Rezept extends React.Component {
                         favorite={this.state.recipe.favorite}
                     />
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', justifyContent: 'center' }}>
                         <Text style={styles.title}>
                             {this.state.recipe.title}
                         </Text>

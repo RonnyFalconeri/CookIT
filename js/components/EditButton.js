@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 
 export default class EditButton extends React.Component {
@@ -9,11 +9,18 @@ export default class EditButton extends React.Component {
                 onPress={this.props.onPress}
             >
                 <Image
-                    style={{ width: 30, height: 30 }}
+                    style={styles.image}
                     source={require('../../assets/images/editIcon.png')}
                 />
             </TouchableOpacity>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    image: {
+        width: 30,
+        height: 30
+    }
+});
 

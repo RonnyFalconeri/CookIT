@@ -8,6 +8,7 @@ import HomeScreen from './js/screens/HomeScreen';
 import Rezepte from './js/screens/Rezepte';
 import Rezept from './js/screens/Rezept';
 import Neues_Rezept from './js/screens/Neues_Rezept';
+import Edit_Rezept from './js/screens/Edit_Rezept';
 import Favoriten from './js/screens/Favoriten';
 import Online_Suche from './js/screens/Online_Suche';
 import Online_Rezept from './js/screens/Online_Rezept';
@@ -26,6 +27,7 @@ export default class App extends React.Component {
           <Stack.Screen name="Rezepte" component={Rezepte} options={pageHeaderBar} />
           <Stack.Screen name="Rezept" component={Rezept} options={pageHeaderBar} />
           <Stack.Screen name="Neues_Rezept" component={Neues_Rezept} options={pageHeaderBar} />
+          <Stack.Screen name="Edit_Rezept" component={Edit_Rezept} options={pageHeaderBar} />
           <Stack.Screen name="Favoriten" component={Favoriten} options={pageHeaderBar} />
           <Stack.Screen name="Online_Suche" component={Online_Suche} options={pageHeaderBar} />
           <Stack.Screen name="Online_Rezept" component={Online_Rezept} options={pageHeaderBar} />

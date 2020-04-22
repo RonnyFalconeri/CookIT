@@ -22,37 +22,16 @@ export default class Rezept extends React.Component {
     };
 
 
-
     componentDidMount() {
 
         // change header title
         this.props.navigation.setOptions({ title: 'Rezept' });
         this.setState({ recipe: this.props.route.params.recipe });
-
-        console.log(this.props.route.params.recipe);
-        if (this.props.route.params.recipe.image == null) {
-            this.setState(prevState => {
-                let recipe = { ...prevState.recipe };
-                recipe['image'] = this.state.image_default;
-                return { recipe }
-            }, () => console.log(this.state.recipe));
-        }
     }
 
-    /*constructor(props) {
-        super(props);
-        this.state = {
-            recipe: props.route.params.recipe
-        }
+    componentWillReceiveProps(props) {
+        this.setState({ recipe: props.route.params.recipe });
     }
-    
-    componentDidUpdate() {
-        this.state = {
-            recipe: this.props.route.params?.recipe
-        }
-        console.log(this.props.route.params?.recipe);
-        console.log(this.state.recipe);
-    }*/
 
 
     render() {
@@ -67,16 +46,33 @@ export default class Rezept extends React.Component {
             );
         });
 
+        // dependend on current shown image, render different image component with different source
+        let recipeImage = Array(this.state).map(() => {
+            if (this.state.recipe.image == null) {
+                return (
+                    <Image
+                        key={'default'}
+                        style={styles.image}
+                        source={this.state.image_default}
+                    />
+                );
+            } else {
+                return (
+                    <Image
+                        key={'picked'}
+                        style={styles.image}
+                        source={{ uri: this.state.recipe.image }}
+                    />
+                );
+            }
+        });
+
         return (
 
             <ScrollView >
                 <View style={styles.container}>
 
-
-                    <Image
-                        style={styles.image}
-                        source={this.state.recipe.image}
-                    />
+                    {recipeImage}
 
                     <AddFavoriteButton
                         styling={{ position: 'absolute', top: 17, left: 20 }}
@@ -89,7 +85,7 @@ export default class Rezept extends React.Component {
                         </Text>
 
                         <EditButton
-                            onPress={() => this.props.navigation.navigate('Neues_Rezept', { recipe: this.state.recipe, edit: true })}
+                            onPress={() => this.props.navigation.push('Edit_Rezept', { recipe: this.state.recipe })}
                         />
                     </View>
 

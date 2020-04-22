@@ -7,24 +7,25 @@ import IngredientInput from '../components/IngredientInput';
 
 export default class IngredientsInput extends React.Component {
     state = {
-        ingredients: [
-            { amount: '', ingredient: '' }
-        ]
+        ingredients: [],
+        delRowVisible: 'flex'
     };
 
-    componentDidMount() {
-        console.log(this.state.ingredients);
-        // init ingredients array
-        this.setState({ ingredients: this.props.ingredient_list }, () => {
-            // if 1 row -> hide delRow button
-            if (this.props.ingredient_list.length > 1) {
-                this.setState({ delRowVisible: 'flex' });
-            } else {
-                this.setState({ delRowVisible: 'none' });
-            }
-        });
+    constructor(props) {
+        super(props);
+        console.log(props.ingredient_list.length);
+        let visible = 'none';
+        if (props.ingredient_list.length > 1) {
+            visible = 'flex';
+        }
+
+        this.state = {
+            ingredients: props.ingredient_list,
+            delRowVisible: visible
+        };
 
     }
+
 
     _handleIngredientsInput(index, key, value) {
         console.log(this.state.ingredients);
@@ -91,7 +92,7 @@ export default class IngredientsInput extends React.Component {
     render() {
 
         // render variable amount of rows
-        let ingredients = this.props.ingredient_list.map((key, i) => {
+        let ingredients = this.state.ingredients.map((key, i) => {
             return (
                 <View key={'view_' + i} style={styles.row}>
                     <AmountInput

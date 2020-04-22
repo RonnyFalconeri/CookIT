@@ -17,11 +17,14 @@ export default class ImageInput extends React.Component {
         this.getPermissionAsync();
 
         // if no image delivered as parameter -> show default image
-        this.setState({ image_show: this.state.image_default });
-        this.setState({ image_delivered: this.props.image });
-        if (this.props.image != null) {
-            this.setState({ image_show: this.state.image_delivered });
-        }
+        this.setState({ image_delivered: this.props.image }, () => {
+            if (this.state.image_delivered != null) {
+                this.setState({ image_show: this.props.image });
+            } else {
+                this.setState({ image_show: this.state.image_default });
+            }
+        });
+
 
     }
 
@@ -40,8 +43,9 @@ export default class ImageInput extends React.Component {
     _deleteImage() {
         this.setState({
             image_picked: null,
+            image_delivered: null,
             image_show: this.state.image_default,
-        });
+        }, () => this.props.onChange(null));
     }
 
     _takeImage = async () => {
@@ -55,7 +59,9 @@ export default class ImageInput extends React.Component {
             });
 
             if (!result.cancelled) {
-                this.setState({ image_picked: result.uri });
+                this.setState({
+                    image_picked: result.uri
+                }, () => this.props.onChange(this.state.image_picked));
             }
 
             console.log(result);
@@ -74,7 +80,9 @@ export default class ImageInput extends React.Component {
                 quality: 1,
             });
             if (!result.cancelled) {
-                this.setState({ image_picked: result.uri });
+                this.setState({
+                    image_picked: result.uri
+                }, () => this.props.onChange(this.state.image_picked));
             }
 
             // CameraRoll.saveToCameraRoll(this.state.image);
@@ -89,7 +97,18 @@ export default class ImageInput extends React.Component {
 
         // dependend on current shown image, render different image component with different source
         let recipeImage = Array(this.state).map(() => {
-            if (this.state.image_picked === null) {
+            if (this.state.image_picked == null) {
+
+                if (this.state.image_delivered != null) {
+                    return (
+                        <Image
+                            key={'delivered'}
+                            style={styles.recipeImage_style}
+                            source={{ uri: this.state.image_delivered }}
+                        />
+                    );
+                }
+
                 return (
                     <Image
                         key={'default'}
@@ -97,6 +116,7 @@ export default class ImageInput extends React.Component {
                         source={this.state.image_show}
                     />
                 );
+
             } else {
                 return (
                     <Image
@@ -114,7 +134,6 @@ export default class ImageInput extends React.Component {
                 <View style={styles.recipeImage}>
                     {recipeImage}
                 </View>
-
 
                 <TouchableOpacity
                     style={styles.button}

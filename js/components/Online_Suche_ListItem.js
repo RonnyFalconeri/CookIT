@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Image, View } from 'react-native';
 
 
-export default class Rezepte_ListItem extends React.Component {
+export default class Online_Suche_ListItem extends React.Component {
     state = {
         image_default: require('../../assets/images/recipe_default_image.png'),
         image_delivered: null,
         image_show: null,
-        fav: require('../../assets/images/addFavoriteIcon2.png')
+        saved: require('../../assets/images/downloadIcon.png')
     };
 
     componentDidMount() {
@@ -21,12 +21,12 @@ export default class Rezepte_ListItem extends React.Component {
     render() {
 
         let image = Array(this.state).map(() => {
-            if (this.props.favorite) {
+            if (this.props.saved) {
                 return (
                     <Image
                         key={'fav'}
-                        style={styles.fav_image}
-                        source={this.state.fav}
+                        style={styles.saved_image}
+                        source={this.state.saved}
                     />
                 );
             }
@@ -50,7 +50,7 @@ export default class Rezepte_ListItem extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#6d9eeb',
+        backgroundColor: '#76a5af',
         padding: 20,
         marginTop: 15,
         marginBottom: 15,
@@ -83,12 +83,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 2
     },
-    fav_image: {
-        width: 40,
-        height: 40,
+    saved_image: {
+        width: 50,
+        height: 30,
         position: 'absolute',
-        top: 50,
-        left: 85
+        top: 60,
+        left: 82
     },
     duration: {
         fontSize: 15,

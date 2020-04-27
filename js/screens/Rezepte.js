@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
 import Rezepte_ListItem from '../components/Rezepte_ListItem';
+import TextCustom from '../components/TextCustom';
 
 
 export default class Rezepte extends React.Component {
@@ -52,7 +53,7 @@ export default class Rezepte extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: 'Rezepte' });
+        this.props.navigation.setOptions({ title: <TextCustom>Rezepte</TextCustom> });
     }
 
     render() {

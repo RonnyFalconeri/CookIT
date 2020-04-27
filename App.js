@@ -14,6 +14,8 @@ import Online_Suche from './js/screens/Online_Suche';
 import Online_Rezept from './js/screens/Online_Rezept';
 import Zufällig from './js/screens/Zufällig';
 
+import TextCustom from './js/components/TextCustom';
+
 
 const Stack = createStackNavigator();
 
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   homeHeaderBarTitle: {
     color: 'black',
     fontSize: 60,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     left: 60
   },
   homeHeaderBarIcon: {
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
   pageHeaderBarTitle: {
     color: 'black',
     fontSize: 30,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     left: -15
   },
   pageHeaderBarBackButton: {
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
 });
 
 const homeHeaderBar = {
-  title: 'CookIT!',
+  title: <TextCustom>CookIT!</TextCustom>,
   headerStyle: styles.homeHeaderBarStyle,
   headerTitleStyle: styles.homeHeaderBarTitle,
   headerLeft: () =>

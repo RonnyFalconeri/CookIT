@@ -13,7 +13,6 @@ export default class IngredientsInput extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props.ingredient_list.length);
         let visible = 'none';
         if (props.ingredient_list.length > 1) {
             visible = 'flex';
@@ -28,7 +27,6 @@ export default class IngredientsInput extends React.Component {
 
 
     _handleIngredientsInput(index, key, value) {
-        console.log(this.state.ingredients);
         // update ingredients in state.recipe
         if (key === 'amount') {
             this.setState(prevState => {
@@ -54,7 +52,6 @@ export default class IngredientsInput extends React.Component {
     }
 
     _addIngredientRow() {
-        console.log('add row...');
         this.setState(prevState => {
             let ingredients = [...prevState.ingredients];
             ingredients.push({ amount: '', ingredient: '' });
@@ -70,9 +67,6 @@ export default class IngredientsInput extends React.Component {
     }
 
     _deleteIngredientRow() {
-        console.log('delete row...');
-        console.log(this.state.ingredients);
-        console.log(this.state.ingredients.length);
         if (this.state.ingredients.length > 1) {
             this.setState(prevState => {
                 let ingredients = [...prevState.ingredients];

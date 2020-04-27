@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import Rezepte_ListItem from '../components/Rezepte_ListItem';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import AddFavoriteButton from '../components/AddFavoriteButton';
+
 
 export default class Zufällig extends React.Component {
-
     state = {
         recipe: {
             image: null,
@@ -45,6 +44,11 @@ export default class Zufällig extends React.Component {
                     source={this.state.image_default}
                 />
 
+                <AddFavoriteButton
+                    styling={{ position: 'absolute', top: 17, left: 20 }}
+                    favorite={this.state.recipe.favorite}
+                />
+
                 <Text style={styles.title}>
                     {this.state.recipe.title}
                 </Text>
@@ -57,7 +61,7 @@ export default class Zufällig extends React.Component {
 
                 <TouchableOpacity
                     style={styles.kochen}
-                    onPress={() => this.props.navigation.navigate('Rezept', this.state.recipe)}
+                    onPress={() => this.props.navigation.navigate('Rezept', { recipe: this.state.recipe })}
                 >
                     <Text style={styles.kochen_label}>Kochen!</Text>
                 </TouchableOpacity>

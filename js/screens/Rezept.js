@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+
+import TextCustom from '../components/TextCustom';
 import Separator from '../components/Separator';
 import AddFavoriteButton from '../components/AddFavoriteButton';
 import EditButton from '../components/EditButton';
@@ -25,7 +27,7 @@ export default class Rezept extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: 'Rezept' });
+        this.props.navigation.setOptions({ title: <TextCustom>Rezept</TextCustom> });
         this.setState({ recipe: this.props.route.params.recipe });
     }
 

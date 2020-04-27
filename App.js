@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   homeHeaderBarTitle: {
     color: 'black',
     fontSize: 60,
-    //fontWeight: 'bold',
     left: 60
   },
   homeHeaderBarIcon: {
@@ -81,9 +80,8 @@ const styles = StyleSheet.create({
   },
   pageHeaderBarTitle: {
     color: 'black',
-    fontSize: 30,
-    //fontWeight: 'bold',
-    left: -15
+    fontSize: 40,
+    left: -35
   },
   pageHeaderBarBackButton: {
     height: 30,

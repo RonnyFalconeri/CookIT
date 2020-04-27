@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet, Button } from 'react-native';
 
+import TextCustom from '../components/TextCustom';
+
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';
 import DurationInput from '../components/DurationInput';
@@ -28,7 +30,7 @@ export default class Neues_Rezept extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: 'Neues Rezept' });
+        this.props.navigation.setOptions({ title: <TextCustom>Neues Rezept</TextCustom> });
 
         // determine editmode
         this.setState({ edit: this.props.route.params.edit });

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import AddFavoriteButton from '../components/AddFavoriteButton';
+import TextCustom from '../components/TextCustom';
 
 
 export default class Zufällig extends React.Component {
@@ -25,7 +26,7 @@ export default class Zufällig extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: 'Zufällig' });
+        this.props.navigation.setOptions({ title: <TextCustom>Zufällig</TextCustom> });
         console.log(this.state.recipe);
     }
 

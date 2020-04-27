@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
 import Favoriten_ListItem from '../components/Favoriten_ListItem';
-
+import TextCustom from '../components/TextCustom';
 
 export default class Favoriten extends React.Component {
     state = {
@@ -40,7 +40,7 @@ export default class Favoriten extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: 'Favoriten' });
+        this.props.navigation.setOptions({ title: <TextCustom>Favoriten</TextCustom> });
     }
 
     render() {

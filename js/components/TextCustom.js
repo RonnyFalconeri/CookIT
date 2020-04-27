@@ -23,11 +23,9 @@ export default class TextCustom extends React.Component {
             return <ActivityIndicator />
         }
         return (
-            <View>
-                <Text style={styles.defaultStyle}>
-                    {this.props.children}
-                </Text>
-            </View>
+            <Text style={styles.defaultStyle}>
+                {this.props.children}
+            </Text>
         )
     }
 }

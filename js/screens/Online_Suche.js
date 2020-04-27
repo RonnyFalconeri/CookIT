@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
 import Online_Suche_ListItem from '../components/Online_Suche_ListItem';
-
+import TextCustom from '../components/TextCustom';
 
 export default class Online_Suche extends React.Component {
     state = {
@@ -52,7 +52,7 @@ export default class Online_Suche extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: 'Online-Suche' });
+        this.props.navigation.setOptions({ title: <TextCustom>Online-Suche</TextCustom> });
     }
 
     render() {

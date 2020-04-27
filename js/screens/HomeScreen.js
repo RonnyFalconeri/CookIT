@@ -49,6 +49,13 @@ export default class HomeScreen extends React.Component {
                     image={require('../../assets/images/backgroundimage.png')}
                 />
 
+                <HomeScreen_ListItem
+                    title="Einstellungen"
+                    onPress={() => this.props.navigation.navigate('Einstellungen')}
+                    color="#dd7e6b"
+                    image={require('../../assets/images/backgroundimage.png')}
+                />
+
             </ScrollView>
         );
     }

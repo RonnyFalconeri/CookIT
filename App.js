@@ -13,6 +13,7 @@ import Favoriten from './js/screens/Favoriten';
 import Online_Suche from './js/screens/Online_Suche';
 import Online_Rezept from './js/screens/Online_Rezept';
 import Zufällig from './js/screens/Zufällig';
+import Einstellungen from './js/screens/Einstellungen';
 
 import TextCustom from './js/components/TextCustom';
 
@@ -34,6 +35,7 @@ export default class App extends React.Component {
           <Stack.Screen name="Online_Suche" component={Online_Suche} options={pageHeaderBar} />
           <Stack.Screen name="Online_Rezept" component={Online_Rezept} options={pageHeaderBar} />
           <Stack.Screen name="Zufällig" component={Zufällig} options={pageHeaderBar} />
+          <Stack.Screen name="Einstellungen" component={Einstellungen} options={pageHeaderBar} />
         </Stack.Navigator>
       </NavigationContainer >
     );

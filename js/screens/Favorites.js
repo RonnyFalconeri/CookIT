@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import Favoriten_ListItem from '../components/Favoriten_ListItem';
-import TextCustom from '../components/TextCustom';
+import FavoritesListItem from '../components/FavoritesListItem';
+import CustomFont from '../components/CustomFont';
 
 export default class Favorites extends React.Component {
     state = {
@@ -40,21 +40,21 @@ export default class Favorites extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Favoriten</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Favoriten</CustomFont> });
     }
 
     render() {
 
         let recipes = this.state.recipes.map((recipe, i) => {
             return (
-                <Favoriten_ListItem
+                <FavoritesListItem
                     key={'recipe_' + i}
                     title={recipe.title}
                     duration={recipe.duration}
                     nationality={recipe.nationality}
                     image={recipe.image}
                     favorite={recipe.favorite}
-                    onPress={() => this.props.navigation.navigate('Rezept', { recipe })}
+                    onPress={() => this.props.navigation.navigate('Recipe', { recipe })}
                 />
             );
         });

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
 
-export default class Rezepte_ListItem extends React.Component {
+export default class HomeScreenListItem extends React.Component {
     render() {
         return (
             <TouchableOpacity

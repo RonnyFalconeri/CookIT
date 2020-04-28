@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Image, View } from 'react-native';
 
 
-export default class Rezepte_ListItem extends React.Component {
+export default class RecipesListItem extends React.Component {
     state = {
         image_default: require('../../assets/images/recipe_default_image.png'),
         image_delivered: null,

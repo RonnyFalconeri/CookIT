@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import Rezepte_ListItem from '../components/Rezepte_ListItem';
-import TextCustom from '../components/TextCustom';
+import RecipesListItem from '../components/RecipesListItem';
+import CustomFont from '../components/CustomFont';
 
 
 export default class Recipes extends React.Component {
@@ -53,14 +53,14 @@ export default class Recipes extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Rezepte</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Rezepte</CustomFont> });
     }
 
     render() {
 
         let recipes = this.state.recipes.map((recipe, i) => {
             return (
-                <Rezepte_ListItem
+                <RecipesListItem
                     key={'recipe_' + i}
                     title={recipe.title}
                     duration={recipe.duration}

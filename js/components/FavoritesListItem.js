@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Text, TouchableOpacity, StyleSheet, Image, View } from 'react-native';
 
 
-export default class Online_Suche_ListItem extends React.Component {
+export default class FavoritesListItem extends React.Component {
     state = {
         image_default: require('../../assets/images/recipe_default_image.png'),
         image_delivered: null,
         image_show: null,
-        saved: require('../../assets/images/downloadIcon.png')
+        fav: require('../../assets/images/addFavoriteIcon2.png')
     };
 
     componentDidMount() {
@@ -19,23 +19,9 @@ export default class Online_Suche_ListItem extends React.Component {
     }
 
     render() {
-
-        let image = Array(this.state).map(() => {
-            if (this.props.saved) {
-                return (
-                    <Image
-                        key={'fav'}
-                        style={styles.saved_image}
-                        source={this.state.saved}
-                    />
-                );
-            }
-        });
-
         return (
             <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
                 <Image style={styles.image} source={this.state.image_show} />
-                {image}
                 <Text style={styles.title} >{this.props.title}</Text>
                 <View style={styles.column}>
                     <Text style={styles.duration}>{this.props.duration} Min</Text>
@@ -50,7 +36,7 @@ export default class Online_Suche_ListItem extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#76a5af',
+        backgroundColor: '#8e7cc3',
         padding: 20,
         marginTop: 15,
         marginBottom: 15,
@@ -83,13 +69,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 2
     },
-    saved_image: {
-        width: 50,
-        height: 30,
-        position: 'absolute',
-        top: 60,
-        left: 82
-    },
+    fav_image: { width: 40, height: 40, position: 'absolute', top: 50, left: 85 },
     duration: {
         fontSize: 15,
         fontWeight: 'bold',

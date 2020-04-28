@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import AddFavoriteButton from '../components/AddFavoriteButton';
-import TextCustom from '../components/TextCustom';
+import Add2FavoritesButton from '../components/Add2FavoritesButton';
+import CustomFont from '../components/CustomFont';
 
 
 export default class RandomRecipe extends React.Component {
@@ -26,7 +26,7 @@ export default class RandomRecipe extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Zufällig</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Zufällig</CustomFont> });
         console.log(this.state.recipe);
     }
 
@@ -45,7 +45,7 @@ export default class RandomRecipe extends React.Component {
                     source={this.state.image_default}
                 />
 
-                <AddFavoriteButton
+                <Add2FavoritesButton
                     styling={{ position: 'absolute', top: 17, left: 20 }}
                     favorite={this.state.recipe.favorite}
                 />
@@ -62,7 +62,7 @@ export default class RandomRecipe extends React.Component {
 
                 <TouchableOpacity
                     style={styles.kochen}
-                    onPress={() => this.props.navigation.navigate('Rezept', { recipe: this.state.recipe })}
+                    onPress={() => this.props.navigation.navigate('Recipe', { recipe: this.state.recipe })}
                 >
                     <Text style={styles.kochen_label}>Kochen!</Text>
                 </TouchableOpacity>

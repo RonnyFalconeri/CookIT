@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import TextCustom from '../components/TextCustom';
+import CustomFont from '../components/CustomFont';
 
 
 export default class Settings extends React.Component {
@@ -10,7 +10,7 @@ export default class Settings extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Einstellungen</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Einstellungen</CustomFont> });
     }
 
 

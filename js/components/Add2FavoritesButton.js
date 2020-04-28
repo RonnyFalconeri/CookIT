@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 
 
-export default class AddFavoriteButton extends React.Component {
+export default class Add2FavoritesButton extends React.Component {
     state = {
         fav: require('../../assets/images/addFavoriteIcon2.png'),
         no_fav: require('../../assets/images/addFavoriteIcon1.png')

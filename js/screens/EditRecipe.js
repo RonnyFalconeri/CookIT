@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet, Button } from 'react-native';
 
-import TextCustom from '../components/TextCustom';
+import CustomFont from '../components/CustomFont';
 
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';
@@ -29,7 +29,7 @@ export default class EditRecipe extends React.Component {
     componentWillMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Rezept Bearbeiten</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Rezept Bearbeiten</CustomFont> });
         this.setState({ recipe: this.props.route.params.recipe });
     }
 

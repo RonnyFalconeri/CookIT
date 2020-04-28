@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import Online_Suche_ListItem from '../components/Online_Suche_ListItem';
-import TextCustom from '../components/TextCustom';
+import OnlineSearchListItem from '../components/OnlineSearchListItem';
+import CustomFont from '../components/CustomFont';
 
 export default class OnlineSearch extends React.Component {
     state = {
@@ -52,14 +52,14 @@ export default class OnlineSearch extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Online-Suche</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Online-Suche</CustomFont> });
     }
 
     render() {
 
         let recipes = this.state.recipes.map((recipe, i) => {
             return (
-                <Online_Suche_ListItem
+                <OnlineSearchListItem
                     key={'recipe_' + i}
                     title={recipe.title}
                     duration={recipe.duration}

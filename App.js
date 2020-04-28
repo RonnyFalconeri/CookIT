@@ -3,7 +3,8 @@ import { StyleSheet, Image, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// import screens
+import CustomFont from './js/components/CustomFont';
+
 import HomeScreen from './js/screens/HomeScreen';
 import Recipes from './js/screens/Recipes';
 import Recipe from './js/screens/Recipe';
@@ -15,7 +16,6 @@ import OnlineRecipe from './js/screens/OnlineRecipe';
 import RandomRecipe from './js/screens/RandomRecipe';
 import Settings from './js/screens/Settings';
 
-import TextCustom from './js/components/TextCustom';
 
 
 const Stack = createStackNavigator();
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 });
 
 const homeHeaderBar = {
-  title: <TextCustom>CookIT!</TextCustom>,
+  title: <CustomFont>CookIT!</CustomFont>,
   headerStyle: styles.homeHeaderBarStyle,
   headerTitleStyle: styles.homeHeaderBarTitle,
   headerLeft: () =>

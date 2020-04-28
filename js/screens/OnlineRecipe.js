@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-import TextCustom from '../components/TextCustom';
+import CustomFont from '../components/CustomFont';
 import Separator from '../components/Separator';
 import SaveButton from '../components/SaveButton';
 
@@ -26,7 +26,7 @@ export default class OnlineRecipe extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Online-Rezept</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Online-Rezept</CustomFont> });
         this.setState({ recipe: this.props.route.params.recipe });
     }
 

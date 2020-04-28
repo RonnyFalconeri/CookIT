@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-import TextCustom from '../components/TextCustom';
+import CustomFont from '../components/CustomFont';
 import Separator from '../components/Separator';
-import AddFavoriteButton from '../components/AddFavoriteButton';
+import Add2FavoritesButton from '../components/Add2FavoritesButton';
 import EditButton from '../components/EditButton';
 
 
@@ -27,7 +27,7 @@ export default class Recipe extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Rezept</TextCustom> });
+        this.props.navigation.setOptions({ title: <CustomFont>Rezept</CustomFont> });
         this.setState({ recipe: this.props.route.params.recipe });
     }
 
@@ -76,7 +76,7 @@ export default class Recipe extends React.Component {
 
                     {recipeImage}
 
-                    <AddFavoriteButton
+                    <Add2FavoritesButton
                         styling={{ position: 'absolute', top: 17, left: 20 }}
                         favorite={this.state.recipe.favorite}
                     />

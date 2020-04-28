@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, StyleSheet, View, ActivityIndicator } from 'react-native'
 import * as Font from 'expo-font'
 
-export default class TextCustom extends React.Component {
+export default class CustomFont extends React.Component {
     constructor(props) {
         super(props)
 

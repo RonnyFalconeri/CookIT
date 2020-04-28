@@ -20,7 +20,7 @@ export default class Recipe extends React.Component {
             preparation: null,
             favorite: null
         },
-        image_default: require('../../assets/images/recipe_default_image.png')
+        image_default: require('../../assets/images/defaultRecipeImage.png')
     };
 
 

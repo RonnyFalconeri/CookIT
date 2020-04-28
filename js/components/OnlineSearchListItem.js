@@ -4,10 +4,10 @@ import { Text, TouchableOpacity, StyleSheet, Image, View } from 'react-native';
 
 export default class OnlineSearchListItem extends React.Component {
     state = {
-        image_default: require('../../assets/images/recipe_default_image.png'),
+        image_default: require('../../assets/images/defaultRecipeImage.png'),
         image_delivered: null,
         image_show: null,
-        saved: require('../../assets/images/downloadIcon.png')
+        saved: require('../../assets/images/downloadedIcon.png')
     };
 
     componentDidMount() {

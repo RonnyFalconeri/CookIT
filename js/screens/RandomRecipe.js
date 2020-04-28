@@ -19,7 +19,7 @@ export default class RandomRecipe extends React.Component {
             preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
             favorite: true
         },
-        image_default: require('../../assets/images/recipe_default_image.png')
+        image_default: require('../../assets/images/defaultRecipeImage.png')
     };
 
 

@@ -6,7 +6,7 @@ import * as Permissions from 'expo-permissions';
 
 export default class ImageInput extends React.Component {
     state = {
-        image_default: require('../../assets/images/recipe_default_image.png'),
+        image_default: require('../../assets/images/defaultRecipeImage.png'),
         image_delivered: null,
         image_picked: null,
         image_show: null
@@ -147,7 +147,7 @@ export default class ImageInput extends React.Component {
                     }
                 >
                     <ImageBackground
-                        source={require('../../assets/images/camera_icon.png')}
+                        source={require('../../assets/images/cameraIcon.png')}
                         resizeMode="cover"
                         style={styles.cameraImage}
                         imageStyle={styles.cameraImage_style}

@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import Rezepte_ListItem from '../components/Rezepte_ListItem';
+import Online_Suche_ListItem from '../components/Online_Suche_ListItem';
 import TextCustom from '../components/TextCustom';
 
-
-export default class Rezepte extends React.Component {
+export default class OnlineSearch extends React.Component {
     state = {
         recipes: [
             {
@@ -18,7 +17,7 @@ export default class Rezepte extends React.Component {
                     { amount: '3', ingredient: 'Tomaten' }
                 ],
                 preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                favorite: true
+                saved: true
             },
             {
                 image: null,
@@ -32,7 +31,7 @@ export default class Rezepte extends React.Component {
 
                 ],
                 preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.',
-                favorite: true
+                saved: true
             }, {
                 image: null,
                 title: 'Quacamole',
@@ -45,7 +44,7 @@ export default class Rezepte extends React.Component {
                     { amount: '2', ingredient: 'Chilli' }
                 ],
                 preparation: '15 Minuten Kochen, dann salzen.',
-                favorite: false
+                saved: false
             }
         ]
     };
@@ -53,21 +52,21 @@ export default class Rezepte extends React.Component {
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Rezepte</TextCustom> });
+        this.props.navigation.setOptions({ title: <TextCustom>Online-Suche</TextCustom> });
     }
 
     render() {
 
         let recipes = this.state.recipes.map((recipe, i) => {
             return (
-                <Rezepte_ListItem
+                <Online_Suche_ListItem
                     key={'recipe_' + i}
                     title={recipe.title}
                     duration={recipe.duration}
                     nationality={recipe.nationality}
                     image={recipe.image}
-                    favorite={recipe.favorite}
-                    onPress={() => this.props.navigation.navigate('Rezept', { recipe })}
+                    saved={recipe.saved}
+                    onPress={() => this.props.navigation.navigate('OnlineRecipe', { recipe })}
                 />
             );
         });

@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import TextCustom from '../components/TextCustom';
 
 
-export default class Einstellungen extends React.Component {
+export default class Settings extends React.Component {
 
 
     componentDidMount() {

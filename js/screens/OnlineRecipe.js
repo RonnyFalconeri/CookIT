@@ -6,7 +6,7 @@ import Separator from '../components/Separator';
 import SaveButton from '../components/SaveButton';
 
 
-export default class Online_Rezept extends React.Component {
+export default class OnlineRecipe extends React.Component {
     state = {
         recipe: {
             image: null,

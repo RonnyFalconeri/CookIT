@@ -11,7 +11,7 @@ import IngredientsInput from '../components/IngredientsInput';
 import PreparationInput from '../components/PreparationInput';
 
 
-export default class Neues_Rezept extends React.Component {
+export default class NewRecipe extends React.Component {
     state = {
         recipe: {
             image: null,

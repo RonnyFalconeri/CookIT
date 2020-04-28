@@ -5,15 +5,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // import screens
 import HomeScreen from './js/screens/HomeScreen';
-import Rezepte from './js/screens/Rezepte';
-import Rezept from './js/screens/Rezept';
-import Neues_Rezept from './js/screens/Neues_Rezept';
-import Edit_Rezept from './js/screens/Edit_Rezept';
-import Favoriten from './js/screens/Favoriten';
-import Online_Suche from './js/screens/Online_Suche';
-import Online_Rezept from './js/screens/Online_Rezept';
-import Zufällig from './js/screens/Zufällig';
-import Einstellungen from './js/screens/Einstellungen';
+import Recipes from './js/screens/Recipes';
+import Recipe from './js/screens/Recipe';
+import NewRecipe from './js/screens/NewRecipe';
+import EditRecipe from './js/screens/EditRecipe';
+import Favorites from './js/screens/Favorites';
+import OnlineSearch from './js/screens/OnlineSearch';
+import OnlineRecipe from './js/screens/OnlineRecipe';
+import RandomRecipe from './js/screens/RandomRecipe';
+import Settings from './js/screens/Settings';
 
 import TextCustom from './js/components/TextCustom';
 
@@ -27,15 +27,15 @@ export default class App extends React.Component {
         <StatusBar barStyle="dark-content" />
         <Stack.Navigator initialRouteName="HomeScreen" headerMode="float">
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={homeHeaderBar} />
-          <Stack.Screen name="Rezepte" component={Rezepte} options={pageHeaderBar} />
-          <Stack.Screen name="Rezept" component={Rezept} options={pageHeaderBar} />
-          <Stack.Screen name="Neues_Rezept" component={Neues_Rezept} options={pageHeaderBar} />
-          <Stack.Screen name="Edit_Rezept" component={Edit_Rezept} options={pageHeaderBar} />
-          <Stack.Screen name="Favoriten" component={Favoriten} options={pageHeaderBar} />
-          <Stack.Screen name="Online_Suche" component={Online_Suche} options={pageHeaderBar} />
-          <Stack.Screen name="Online_Rezept" component={Online_Rezept} options={pageHeaderBar} />
-          <Stack.Screen name="Zufällig" component={Zufällig} options={pageHeaderBar} />
-          <Stack.Screen name="Einstellungen" component={Einstellungen} options={pageHeaderBar} />
+          <Stack.Screen name="Recipes" component={Recipes} options={pageHeaderBar} />
+          <Stack.Screen name="Recipe" component={Recipe} options={pageHeaderBar} />
+          <Stack.Screen name="NewRecipe" component={NewRecipe} options={pageHeaderBar} />
+          <Stack.Screen name="EditRecipe" component={EditRecipe} options={pageHeaderBar} />
+          <Stack.Screen name="Favorites" component={Favorites} options={pageHeaderBar} />
+          <Stack.Screen name="OnlineSearch" component={OnlineSearch} options={pageHeaderBar} />
+          <Stack.Screen name="OnlineRecipe" component={OnlineRecipe} options={pageHeaderBar} />
+          <Stack.Screen name="RandomRecipe" component={RandomRecipe} options={pageHeaderBar} />
+          <Stack.Screen name="Settings" component={Settings} options={pageHeaderBar} />
         </Stack.Navigator>
       </NavigationContainer >
     );

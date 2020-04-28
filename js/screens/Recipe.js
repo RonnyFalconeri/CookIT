@@ -7,7 +7,7 @@ import AddFavoriteButton from '../components/AddFavoriteButton';
 import EditButton from '../components/EditButton';
 
 
-export default class Rezept extends React.Component {
+export default class Recipe extends React.Component {
     state = {
         recipe: {
             image: null,
@@ -87,7 +87,7 @@ export default class Rezept extends React.Component {
                         </Text>
 
                         <EditButton
-                            onPress={() => this.props.navigation.push('Edit_Rezept', { recipe: this.state.recipe })}
+                            onPress={() => this.props.navigation.push('EditRecipe', { recipe: this.state.recipe })}
                         />
                     </View>
 

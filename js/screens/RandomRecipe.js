@@ -5,7 +5,7 @@ import AddFavoriteButton from '../components/AddFavoriteButton';
 import TextCustom from '../components/TextCustom';
 
 
-export default class Zufällig extends React.Component {
+export default class RandomRecipe extends React.Component {
     state = {
         recipe: {
             image: null,

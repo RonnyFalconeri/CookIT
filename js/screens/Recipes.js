@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import Favoriten_ListItem from '../components/Favoriten_ListItem';
+import Rezepte_ListItem from '../components/Rezepte_ListItem';
 import TextCustom from '../components/TextCustom';
 
-export default class Favoriten extends React.Component {
+
+export default class Recipes extends React.Component {
     state = {
         recipes: [
             {
@@ -32,29 +33,41 @@ export default class Favoriten extends React.Component {
                 ],
                 preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.',
                 favorite: true
+            }, {
+                image: null,
+                title: 'Quacamole',
+                duration: '4',
+                nationality: 'gre',
+                ingredients: [
+                    { amount: '2', ingredient: 'Avocados' },
+                    { amount: '3', ingredient: 'Tomaten' },
+                    { amount: '1', ingredient: 'Zwiebel' },
+                    { amount: '2', ingredient: 'Chilli' }
+                ],
+                preparation: '15 Minuten Kochen, dann salzen.',
+                favorite: false
             }
         ]
     };
 
-
     componentDidMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <TextCustom>Favoriten</TextCustom> });
+        this.props.navigation.setOptions({ title: <TextCustom>Rezepte</TextCustom> });
     }
 
     render() {
 
         let recipes = this.state.recipes.map((recipe, i) => {
             return (
-                <Favoriten_ListItem
+                <Rezepte_ListItem
                     key={'recipe_' + i}
                     title={recipe.title}
                     duration={recipe.duration}
                     nationality={recipe.nationality}
                     image={recipe.image}
                     favorite={recipe.favorite}
-                    onPress={() => this.props.navigation.navigate('Rezept', { recipe })}
+                    onPress={() => this.props.navigation.navigate('Recipe', { recipe })}
                 />
             );
         });

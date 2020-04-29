@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ScrollView, StyleSheet, Button } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
-
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';
 import DurationInput from '../components/DurationInput';
@@ -138,7 +137,6 @@ export default class NewRecipe extends React.Component {
                     title="Abbrechen"
                     onPress={this._saveRecipe}
                 />
-
 
             </ScrollView>
         );

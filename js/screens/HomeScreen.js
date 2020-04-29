@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native';
 
 import HomeScreenListItem from '../components/HomeScreenListItem';
 import ScrollIndicator from '../components/ScrollIndicator';
+import Footer from '../components/Footer';
 
 
 export default class HomeScreen extends React.Component {
@@ -75,6 +76,8 @@ export default class HomeScreen extends React.Component {
                 <ScrollIndicator
                     index={this.state.index}
                 />
+
+                <Footer />
 
             </View>
         );

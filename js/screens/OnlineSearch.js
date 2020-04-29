@@ -5,12 +5,13 @@ import OnlineSearchListItem from '../components/OnlineSearchListItem';
 import CustomFont from '../components/CustomFont';
 import TitleInput from '../components/TitleInput';
 
+
 export default class OnlineSearch extends React.Component {
     state = {
         search: {
             title: '',
             buttonLabel: 'Suchen',
-            result: 'Top 50 Recipes: ',
+            result: 'Top 50 Recipes:',
             buttonColor: '#134f5c'
         },
         recipes: [

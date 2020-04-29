@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         height: 30,
         position: 'absolute',
         top: 60,
-        left: 82
+        left: 80
     },
     duration: {
         fontSize: 15,

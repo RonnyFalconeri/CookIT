@@ -7,6 +7,7 @@ export default class TitleInput extends React.Component {
         return (
             <TextInput
                 style={styles.textInput}
+                ref={this.props.refName}
                 placeholder="Bezeichnung"
                 value={this.props.value}
                 onChangeText={this.props.onChange}

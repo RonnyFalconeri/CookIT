@@ -15,7 +15,7 @@ export default class Footer extends React.Component {
 const styles = StyleSheet.create({
     text: {
         textAlign: 'center',
-        bottom: 5
+        bottom: 20
     }
 });
 

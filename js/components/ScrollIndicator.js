@@ -19,7 +19,7 @@ export default class ScrollIndicator extends React.Component {
         }
 
         return (
-            <View style={{ position: 'absolute', bottom: 40, alignSelf: 'center', flexDirection: 'row' }}>
+            <View style={styles.container}>
                 {indicators}
             </View>
         );
@@ -27,6 +27,12 @@ export default class ScrollIndicator extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        position: 'absolute',
+        bottom: 60,
+        alignSelf: 'center',
+        flexDirection: 'row'
+    },
     circle: {
         width: 10,
         height: 10,

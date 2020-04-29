@@ -43,6 +43,7 @@ export default class Favorites extends React.Component {
         this.props.navigation.setOptions({ title: <CustomFont>Favoriten</CustomFont> });
     }
 
+
     render() {
 
         let recipes = this.state.recipes.map((recipe, i) => {
@@ -66,6 +67,7 @@ export default class Favorites extends React.Component {
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {

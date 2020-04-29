@@ -22,28 +22,19 @@ export default class NewRecipe extends React.Component {
             ],
             preparation: '',
             favorite: null
-        },
-        edit: false
+        }
     };
 
     componentDidMount() {
 
         // change header title
         this.props.navigation.setOptions({ title: <CustomFont>Neues Rezept</CustomFont> });
-
-        // determine editmode
-        this.setState({ edit: this.props.route.params.edit });
-
-        // store recipe, if given
-        if (this.props.route.params.recipe != undefined) {
-            this.setState({ recipe: this.props.route.params.recipe });
-        }
-
     }
 
-    _saveRecipe = () => {
+
+    _saveRecipe() {
         // TODO: save recipe in DB
-        this.props.navigation.navigate('Rezept', this.state.recipe);
+        console.log(this.state.recipe);
     }
 
     _handleTitleInput(value) {
@@ -93,8 +84,8 @@ export default class NewRecipe extends React.Component {
         });
     }
 
-    render() {
 
+    render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>
 
@@ -130,18 +121,14 @@ export default class NewRecipe extends React.Component {
 
                 <Button
                     title="Speichern"
-                    onPress={() => this.props.navigation.navigate('Rezept', { recipe: this.state.recipe })}
-                />
-
-                <Button
-                    title="Abbrechen"
-                    onPress={this._saveRecipe}
+                    onPress={() => this._saveRecipe()}
                 />
 
             </ScrollView>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Image, StatusBar, Text } from 'react-native';
+import { StyleSheet, Image, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 export default class App extends React.Component {
   render() {
     return (
-      <NavigationContainer style={{ backgroundColor: 'grey' }}>
+      <NavigationContainer>
         <StatusBar barStyle="dark-content" />
         <Stack.Navigator initialRouteName="HomeScreen" headerMode="float">
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={homeHeaderBar} />
@@ -37,11 +37,10 @@ export default class App extends React.Component {
           <Stack.Screen name="RandomRecipe" component={RandomRecipe} options={pageHeaderBar} />
           <Stack.Screen name="Settings" component={Settings} options={pageHeaderBar} />
         </Stack.Navigator>
-      </NavigationContainer >
+      </NavigationContainer>
     );
   }
 }
-
 
 
 const styles = StyleSheet.create({

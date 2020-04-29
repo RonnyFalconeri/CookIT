@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 
 import HomeScreenListItem from '../components/HomeScreenListItem';
 import ScrollIndicator from '../components/ScrollIndicator';
@@ -9,19 +9,20 @@ import Footer from '../components/Footer';
 export default class HomeScreen extends React.Component {
     state = { index: 0 };
 
+
     _handleScroll(offset) {
         let index = Math.floor(offset / 322.66);
         this.setState({ index: index });
     }
 
+
     render() {
         return (
-
-            <View style={{ height: '100%' }}>
+            <View style={styles.container}>
 
                 <ScrollView
                     horizontal={true}
-                    style={{ paddingTop: 20 }}
+                    style={styles.list}
                     showsHorizontalScrollIndicator={false}
                     decelerationRate={0}
                     snapToInterval={340}
@@ -38,7 +39,7 @@ export default class HomeScreen extends React.Component {
 
                     <HomeScreenListItem
                         title="Neues Rezept"
-                        onPress={() => this.props.navigation.navigate('NewRecipe', { edit: false })}
+                        onPress={() => this.props.navigation.navigate('NewRecipe')}
                         color="#93c47d"
                         image={require('../../assets/images/newRecipeBg.png')}
                     />
@@ -73,13 +74,20 @@ export default class HomeScreen extends React.Component {
 
                 </ScrollView>
 
-                <ScrollIndicator
-                    index={this.state.index}
-                />
 
+                <ScrollIndicator index={this.state.index} />
                 <Footer />
 
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        height: '100%'
+    },
+    list: {
+        paddingTop: 20
+    }
+});

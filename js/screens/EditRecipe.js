@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ScrollView, StyleSheet, Button } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
-
 import TitleInput from '../components/TitleInput';
 import ImageInput from '../components/ImageInput';
 import DurationInput from '../components/DurationInput';
@@ -26,12 +25,14 @@ export default class EditRecipe extends React.Component {
         }
     };
 
+
     componentWillMount() {
 
         // change header title
         this.props.navigation.setOptions({ title: <CustomFont>Rezept Bearbeiten</CustomFont> });
         this.setState({ recipe: this.props.route.params.recipe });
     }
+
 
     _saveRecipe = () => {
         // TODO: save recipe in DB
@@ -95,7 +96,6 @@ export default class EditRecipe extends React.Component {
     }
 
     render() {
-
         return (
             <ScrollView contentContainerStyle={styles.container}>
 
@@ -135,10 +135,12 @@ export default class EditRecipe extends React.Component {
                     onPress={() => this - this._saveRecipe()}
                 />
 
+
             </ScrollView>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {

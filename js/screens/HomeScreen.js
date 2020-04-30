@@ -28,8 +28,12 @@ export default class HomeScreen extends React.Component {
                     decelerationRate={0}
                     snapToInterval={340}
                     snapToAlignment={'center'}
-                    onMomentumScrollBegin={() => Haptics.impactAsync('light')}
-                    onMomentumScrollEnd={event => this._handleScroll(event.nativeEvent.contentOffset.x)}
+                    onMomentumScrollEnd={
+                        event => {
+                            this._handleScroll(event.nativeEvent.contentOffset.x);
+                            Haptics.impactAsync('light');
+                        }
+                    }
                 >
 
                     <HomeScreenListItem

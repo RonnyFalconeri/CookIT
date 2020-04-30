@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Haptics from 'expo-haptics';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import AmountInput from '../components/AmountInput';
@@ -104,18 +105,34 @@ export default class IngredientsInput extends React.Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.label}>Zutaten:</Text>
+                <Text style={styles.label}>Zutaten</Text>
 
                 <View style={styles.list}>
                     {ingredients}
                 </View>
 
                 <View style={styles.controls}>
-                    <TouchableOpacity style={[styles.delRow, { display: this.state.delRowVisible }]} onPress={() => this._deleteIngredientRow()}>
+                    <TouchableOpacity
+                        style={[styles.delRow, { display: this.state.delRowVisible }]}
+                        onPress={
+                            () => {
+                                this._deleteIngredientRow();
+                                Haptics.impactAsync('light');
+                            }
+                        }
+                    >
                         <Text style={styles.addRow_label}>-</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.addRow} onPress={() => this._addIngredientRow()}>
+                    <TouchableOpacity
+                        style={styles.addRow}
+                        onPress={
+                            () => {
+                                this._addIngredientRow();
+                                Haptics.impactAsync('light');
+                            }
+                        }
+                    >
                         <Text style={styles.addRow_label}>+</Text>
                     </TouchableOpacity>
                 </View>
@@ -137,7 +154,8 @@ const styles = StyleSheet.create({
         marginVertical: 20
     },
     label: {
-        fontSize: 20
+        fontSize: 23,
+        fontWeight: 'bold'
     },
     list: {
         flexDirection: 'column',

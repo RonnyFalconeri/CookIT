@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Haptics from 'expo-haptics';
 import { TouchableOpacity, StyleSheet, Alert, ImageBackground, View, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -137,13 +138,16 @@ export default class ImageInput extends React.Component {
 
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() =>
-                        Alert.alert('Bild hochladen', '', [
-                            { text: 'Kamera', onPress: () => this._takeImage() },
-                            { text: 'Aus Galerie', onPress: () => this._pickImage() },
-                            { text: 'Bild entfernen', style: 'destructive', onPress: () => this._deleteImage() },
-                            { text: 'Abbrechen', style: 'cancel' }
-                        ])
+                    onPress={
+                        () => {
+                            Alert.alert('Bild hochladen', '', [
+                                { text: 'Kamera', onPress: () => this._takeImage() },
+                                { text: 'Aus Galerie', onPress: () => this._pickImage() },
+                                { text: 'Bild entfernen', style: 'destructive', onPress: () => this._deleteImage() },
+                                { text: 'Abbrechen', style: 'cancel' }
+                            ]);
+                            Haptics.impactAsync('light');
+                        }
                     }
                 >
                     <ImageBackground

@@ -29,14 +29,14 @@ export default class EditRecipe extends React.Component {
     componentWillMount() {
 
         // change header title
-        this.props.navigation.setOptions({ title: <CustomFont>Rezept Bearbeiten</CustomFont> });
+        this.props.navigation.setOptions({ title: <CustomFont>Bearbeiten</CustomFont> });
         this.setState({ recipe: this.props.route.params.recipe });
     }
 
 
     _saveRecipe = () => {
         // TODO: save recipe in DB
-        this.props.navigation.navigate('Rezept', { recipe: this.state.recipe });
+        this.props.navigation.navigate('Recipe', { recipe: this.state.recipe });
     }
 
     _handleImageInput(value) {
@@ -132,7 +132,7 @@ export default class EditRecipe extends React.Component {
 
                 <Button
                     title="Speichern"
-                    onPress={() => this - this._saveRecipe()}
+                    onPress={() => this._saveRecipe()}
                 />
 
 

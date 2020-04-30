@@ -133,6 +133,7 @@ export default class NewRecipe extends React.Component {
 const styles = StyleSheet.create({
     container: {
         paddingTop: 30,
+        paddingBottom: 40,
         alignItems: 'center'
     }
 });

@@ -19,7 +19,7 @@ export default class AmountInput extends React.Component {
 const styles = StyleSheet.create({
     textInput: {
         height: 40,
-        width: 70,
+        width: 100,
         borderBottomColor: 'black',
         borderBottomWidth: 1,
         fontSize: 20,

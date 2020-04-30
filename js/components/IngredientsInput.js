@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Haptics from 'expo-haptics';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, ImageBackground } from 'react-native';
 
 import AmountInput from '../components/AmountInput';
 import IngredientInput from '../components/IngredientInput';
@@ -121,7 +121,11 @@ export default class IngredientsInput extends React.Component {
                             }
                         }
                     >
-                        <Text style={styles.addRow_label}>-</Text>
+                        <ImageBackground
+                            source={require('../../assets/images/deleteRowIcon.png')}
+                            resizeMode="contain"
+                            style={styles.backgroundImage}
+                        />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -133,7 +137,11 @@ export default class IngredientsInput extends React.Component {
                             }
                         }
                     >
-                        <Text style={styles.addRow_label}>+</Text>
+                        <ImageBackground
+                            source={require('../../assets/images/addRowIcon.png')}
+                            resizeMode="contain"
+                            style={styles.backgroundImage}
+                        />
                     </TouchableOpacity>
                 </View>
 
@@ -151,7 +159,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgrey',
         borderRadius: 10,
         padding: 10,
-        marginVertical: 20
+        marginBottom: 15
     },
     label: {
         fontSize: 23,
@@ -180,11 +188,6 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginRight: 5
     },
-    addRow_label: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
     delRow: {
         backgroundColor: '#d66060',
         borderRadius: 20,
@@ -194,5 +197,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: 5,
         marginRight: 5
+    },
+    backgroundImage: {
+        height: '100%',
+        width: '100%'
     }
 });

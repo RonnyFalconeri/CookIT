@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Haptics from 'expo-haptics';
 import { ScrollView, View, StyleSheet } from 'react-native';
 
 import HomeScreenListItem from '../components/HomeScreenListItem';
@@ -27,6 +28,7 @@ export default class HomeScreen extends React.Component {
                     decelerationRate={0}
                     snapToInterval={340}
                     snapToAlignment={'center'}
+                    onMomentumScrollBegin={() => Haptics.impactAsync('light')}
                     onMomentumScrollEnd={event => this._handleScroll(event.nativeEvent.contentOffset.x)}
                 >
 

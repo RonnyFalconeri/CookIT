@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Haptics from 'expo-haptics';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
@@ -87,8 +88,11 @@ export default class Recipe extends React.Component {
                         </Text>
 
                         <EditButton
-                            onPress={() => this.props.navigation.push('EditRecipe', { recipe: this.state.recipe })}
-                        />
+                            onPress={() => {
+                                this.props.navigation.push('EditRecipe', { recipe: this.state.recipe });
+                                Haptics.impactAsync('light')
+                            }
+                            } />
                     </View>
 
 

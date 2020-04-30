@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Haptics from 'expo-haptics';
 import { ScrollView, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 import OnlineSearchListItem from '../components/OnlineSearchListItem';
@@ -134,7 +135,12 @@ export default class OnlineSearch extends React.Component {
                     nationality={recipe.nationality}
                     image={recipe.image}
                     saved={recipe.saved}
-                    onPress={() => this.props.navigation.navigate('OnlineRecipe', { recipe })}
+                    onPress={
+                        () => {
+                            this.props.navigation.navigate('OnlineRecipe', { recipe });
+                            Haptics.impactAsync('light')
+                        }
+                    }
                 />
             );
         });

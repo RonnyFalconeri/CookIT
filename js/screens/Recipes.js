@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Haptics from 'expo-haptics';
 import { ScrollView, StyleSheet } from 'react-native';
 
 import RecipesListItem from '../components/RecipesListItem';
@@ -67,7 +68,12 @@ export default class Recipes extends React.Component {
                     nationality={recipe.nationality}
                     image={recipe.image}
                     favorite={recipe.favorite}
-                    onPress={() => this.props.navigation.navigate('Recipe', { recipe })}
+                    onPress={
+                        () => {
+                            this.props.navigation.navigate('Recipe', { recipe });
+                            Haptics.impactAsync('light')
+                        }
+                    }
                 />
             );
         });

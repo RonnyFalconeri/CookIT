@@ -7,6 +7,7 @@ export default class HomeScreenListItem extends React.Component {
         return (
             <TouchableOpacity
                 style={[styles.listItem, { backgroundColor: this.props.color }]}
+                delayPressIn={70}
                 onPress={this.props.onPress}
             >
                 <ImageBackground

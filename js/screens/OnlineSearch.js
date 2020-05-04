@@ -145,6 +145,7 @@ export default class OnlineSearch extends React.Component {
             );
         });
 
+
         return (
             <ScrollView contentContainerStyle={styles.container}>
                 <TitleInput
@@ -155,7 +156,10 @@ export default class OnlineSearch extends React.Component {
 
                 <TouchableOpacity
                     style={[{ backgroundColor: this.state.search.buttonColor }, styles.search]}
-                    onPress={() => this._searchStart()}
+                    onPress={() => {
+                        this._searchStart();
+                        Haptics.impactAsync('heavy')
+                    }}
                 >
                     <Text style={styles.search_label}>{this.state.search.buttonLabel}</Text>
                 </TouchableOpacity>

@@ -9,6 +9,7 @@ import SaveButton from '../components/SaveButton';
 export default class OnlineRecipe extends React.Component {
     state = {
         recipe: {
+            id: null,
             image: null,
             title: null,
             duration: null,
@@ -17,7 +18,9 @@ export default class OnlineRecipe extends React.Component {
                 { amount: '', ingredient: '' }
             ],
             preparation: null,
-            favorite: null
+            saved: null,
+            author: null,
+            createdAt: null
         },
         image_default: require('../../assets/images/defaultRecipeImage.png')
     };
@@ -37,6 +40,7 @@ export default class OnlineRecipe extends React.Component {
     _saveRecipe() {
         // TODO: save recipe to DB
         console.log("recipe will be saved.");
+        this.props.navigation.goBack();
     }
 
 
@@ -110,6 +114,13 @@ export default class OnlineRecipe extends React.Component {
                     <View style={styles.containerPreparation}>
                         <Text style={styles.preparation_label}>Zubereitung</Text>
                         <Text style={styles.preparation}>{this.state.recipe.preparation}</Text>
+                    </View>
+
+                    <Separator />
+
+                    <View style={styles.metaData}>
+                        <Text>Autor: {this.state.recipe.author}</Text>
+                        <Text>Erstellt: {this.state.recipe.createdAt}</Text>
                     </View>
 
 
@@ -213,5 +224,8 @@ const styles = StyleSheet.create({
         padding: 5,
         fontSize: 18,
         textAlign: 'center'
+    },
+    metaData: {
+        alignItems: 'center'
     }
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Button } from 'react-native';
+import { ScrollView, StyleSheet, Button, Alert } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
 import TitleInput from '../components/TitleInput';
@@ -8,11 +8,13 @@ import DurationInput from '../components/DurationInput';
 import NationalityInput from '../components/NationalityInput';
 import IngredientsInput from '../components/IngredientsInput';
 import PreparationInput from '../components/PreparationInput';
+import AuthorInput from '../components/AuthorInput';
 
 
 export default class EditRecipe extends React.Component {
     state = {
         recipe: {
+            id: null,
             image: null,
             title: '',
             duration: '',
@@ -21,7 +23,9 @@ export default class EditRecipe extends React.Component {
                 { amount: '', ingredient: '' }
             ],
             preparation: '',
-            favorite: null
+            favorite: null,
+            author: '',
+            createdAt: ''
         }
     };
 
@@ -34,9 +38,44 @@ export default class EditRecipe extends React.Component {
     }
 
 
-    _saveRecipe = () => {
+    _saveRecipe() {
+        // validate inputs, check if empty
+        let valid = true;
+        if (
+            this.state.recipe.title == '' ||
+            this.state.recipe.duration == '' ||
+            this.state.recipe.ingredients[0]['amount'] == '' ||
+            this.state.recipe.ingredients[0]['ingredient'] == '' ||
+            this.state.recipe.preparation == ''
+        ) {
+            valid = false;
+        }
+
+        if (valid) {
+            // inputs are valid
+            this._saveInDB();
+            this.props.navigation.navigate('Recipe', { recipe: this.state.recipe });
+        } else {
+            // inputs are invalid
+            Alert.alert('Leere Pflichtfelder', 'Bitte füllen Sie alle Pflichtfelder.')
+        }
+    }
+
+    _saveInDB() {
         // TODO: save recipe in DB
-        this.props.navigation.navigate('Recipe', { recipe: this.state.recipe });
+        console.log('saving to DB...');
+    }
+
+    _deleteRecipe() {
+        Alert.alert('Rezept löschen', 'Das Rezept wird unwiederruflich aus der Datenbank gelöscht. Möchten Sie fortfahren?', [
+            { text: 'Löschen', style: 'destructive', onPress: () => this._deleteFromDB() },
+            { text: 'Abbrechen', style: 'cancel' }
+        ]);
+    }
+
+    _deleteFromDB() {
+        // TODO: delete recipe from DB
+        console.log('deleting from DB...');
     }
 
     _handleImageInput(value) {
@@ -95,6 +134,17 @@ export default class EditRecipe extends React.Component {
         });
     }
 
+    _handleAuthorInput(value) {
+        // update preparation in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['author'] = value;
+            return { recipe }
+
+        });
+    }
+
+
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>
@@ -130,9 +180,19 @@ export default class EditRecipe extends React.Component {
                     onChange={(value) => this._handlePreparationInput(value)}
                 />
 
+                <AuthorInput
+                    value={this.state.recipe.author}
+                    onChange={(value) => this._handleAuthorInput(value)}
+                />
+
                 <Button
                     title="Speichern"
                     onPress={() => this._saveRecipe()}
+                />
+
+                <Button
+                    title="Löschen"
+                    onPress={() => this._deleteRecipe()}
                 />
 
 

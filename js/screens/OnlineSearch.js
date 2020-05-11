@@ -17,6 +17,7 @@ export default class OnlineSearch extends React.Component {
         },
         recipes: [
             {
+                id: 1,
                 image: null,
                 title: 'Spaghetti Bolognese',
                 duration: '14',
@@ -26,9 +27,12 @@ export default class OnlineSearch extends React.Component {
                     { amount: '3', ingredient: 'Tomaten' }
                 ],
                 preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-                saved: true
+                saved: true,
+                author: 'Ronny Falconeri',
+                createdAt: '12:35 Uhr, 8. März 2020'
             },
             {
+                id: 2,
                 image: null,
                 title: 'Spaghetti Carbonara',
                 duration: '15',
@@ -40,8 +44,12 @@ export default class OnlineSearch extends React.Component {
 
                 ],
                 preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.',
-                saved: true
-            }, {
+                saved: true,
+                author: 'Mert Topcuoglu',
+                createdAt: '13:22 Uhr, 10. April 2020'
+            },
+            {
+                id: 3,
                 image: null,
                 title: 'Quacamole',
                 duration: '4',
@@ -53,7 +61,9 @@ export default class OnlineSearch extends React.Component {
                     { amount: '2', ingredient: 'Chilli' }
                 ],
                 preparation: '15 Minuten Kochen, dann salzen.',
-                saved: false
+                saved: false,
+                author: 'Ennio Morricone',
+                createdAt: '00:00 Uhr, 2. Mai 2020'
             }
         ]
     };

@@ -20,7 +20,7 @@ export default class HomeScreenListItem extends React.Component {
                     <Text style={styles.listItem_label}>{this.props.title}</Text>
                 </View>
 
-            </TouchableOpacity >
+            </TouchableOpacity>
         );
     }
 }

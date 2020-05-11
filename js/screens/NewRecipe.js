@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Button } from 'react-native';
+import { ScrollView, StyleSheet, Button, Alert } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
 import TitleInput from '../components/TitleInput';
@@ -33,8 +33,31 @@ export default class NewRecipe extends React.Component {
 
 
     _saveRecipe() {
+
+        // validate inputs, check if empty
+        let valid = true;
+        if (
+            this.state.recipe.title == '' ||
+            this.state.recipe.duration == '' ||
+            this.state.recipe.ingredients[0]['amount'] == '' ||
+            this.state.recipe.ingredients[0]['ingredient'] == '' ||
+            this.state.recipe.preparation == ''
+        ) {
+            valid = false;
+        }
+
+        if (valid) { // inputs are valid
+            this._saveInDB();
+            this.props.navigation.navigate('HomeScreen');
+        } else { // inputs are invalid
+            Alert.alert('Leere Pflichtfelder', 'Bitte füllen Sie alle Pflichtfelder.')
+        }
+
+    }
+
+    _saveInDB() {
         // TODO: save recipe in DB
-        console.log(this.state.recipe);
+        console.log('saving to DB...');
     }
 
     _handleTitleInput(value) {

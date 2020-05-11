@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as Haptics from 'expo-haptics';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import RecipesListItem from '../components/RecipesListItem';
 import CustomFont from '../components/CustomFont';
+import SearchButton from '../components/SearchButton';
 
 
 export default class Recipes extends React.Component {
@@ -58,7 +59,8 @@ export default class Recipes extends React.Component {
                 author: 'Ennio Morricone',
                 createdAt: '00:00 Uhr, 2. Mai 2020'
             }
-        ]
+        ],
+        filter: null
     };
 
     componentDidMount() {
@@ -81,7 +83,7 @@ export default class Recipes extends React.Component {
                     onPress={
                         () => {
                             this.props.navigation.navigate('Recipe', { recipe });
-                            Haptics.impactAsync('light')
+                            Haptics.impactAsync('light');
                         }
                     }
                 />
@@ -89,15 +91,25 @@ export default class Recipes extends React.Component {
         });
 
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                {recipes}
-            </ScrollView>
+            <View style={styles.container}>
+                <ScrollView contentContainerStyle={styles.scrollContainer}>
+                    {recipes}
+                </ScrollView>
+
+                <SearchButton
+                    onChange={(filter) => this.setState({ filter: filter })}
+                />
+
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
+        height: '100%'
+    },
+    scrollContainer: {
         paddingTop: 20,
         alignItems: 'center'
     }

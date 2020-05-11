@@ -6,6 +6,7 @@ import CustomFont from '../components/CustomFont';
 import Separator from '../components/Separator';
 import Add2FavoritesButton from '../components/Add2FavoritesButton';
 import EditButton from '../components/EditButton';
+import PortionAdjust from '../components/PortionAdjust';
 
 
 export default class Recipe extends React.Component {
@@ -24,6 +25,7 @@ export default class Recipe extends React.Component {
             author: null,
             createdAt: null
         },
+        portions: this.props.route.params.recipe.ingredients,
         image_default: require('../../assets/images/defaultRecipeImage.png')
     };
 
@@ -39,11 +41,16 @@ export default class Recipe extends React.Component {
         this.setState({ recipe: props.route.params.recipe });
     }
 
+    _changePortions(ingredients) {
+        // update ingredients in state.recipe
+        this.setState({ portions: ingredients });
+    }
+
 
     render() {
 
         // render variable amount of rows
-        let ingredients = this.state.recipe.ingredients.map((key, i) => {
+        let ingredients = this.state.portions.map((key, i) => {
             return (
                 <View key={'view_' + i} style={styles.rowIngredients}>
                     <Text style={styles.amount}>{key.amount}</Text>
@@ -107,6 +114,11 @@ export default class Recipe extends React.Component {
                     </View>
 
                     <Separator />
+
+                    <PortionAdjust
+                        ingredients={this.state.recipe.ingredients}
+                        onChange={(ingredients) => this._changePortions(ingredients)}
+                    />
 
                     <View style={styles.containerIngredients}>
                         <Text style={styles.ingredients_label}>Zutaten</Text>

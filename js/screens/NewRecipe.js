@@ -60,6 +60,15 @@ export default class NewRecipe extends React.Component {
         console.log('saving to DB...');
     }
 
+    _handleImageInput(value) {
+        // update title in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['image'] = value;
+            return { recipe }
+        });
+    }
+
     _handleTitleInput(value) {
         // update title in state.recipe
         this.setState(prevState => {
@@ -115,6 +124,7 @@ export default class NewRecipe extends React.Component {
 
                 <ImageInput
                     image={this.state.recipe.image}
+                    onChange={(value) => this._handleImageInput(value)}
                 />
 
                 <TitleInput

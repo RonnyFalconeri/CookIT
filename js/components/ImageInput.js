@@ -100,6 +100,7 @@ export default class ImageInput extends React.Component {
         let recipeImage = Array(this.state).map(() => {
             if (this.state.image_picked == null) {
 
+                // if given, show delivered image
                 if (this.state.image_delivered != null) {
                     return (
                         <Image
@@ -110,6 +111,7 @@ export default class ImageInput extends React.Component {
                     );
                 }
 
+                // else, show default image
                 return (
                     <Image
                         key={'default'}
@@ -118,6 +120,7 @@ export default class ImageInput extends React.Component {
                     />
                 );
 
+                // show image picked with camera or camera roll
             } else {
                 return (
                     <Image

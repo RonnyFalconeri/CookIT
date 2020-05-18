@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as Haptics from 'expo-haptics';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import FavoritesListItem from '../components/FavoritesListItem';
 import CustomFont from '../components/CustomFont';
+import SearchButton from '../components/SearchButton';
 
 export default class Favorites extends React.Component {
     state = {
@@ -34,7 +35,8 @@ export default class Favorites extends React.Component {
                 preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.',
                 favorite: true
             }
-        ]
+        ],
+        filter: null
     };
 
 
@@ -67,9 +69,16 @@ export default class Favorites extends React.Component {
         });
 
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                {recipes}
-            </ScrollView>
+            <View style={styles.container}>
+                <ScrollView contentContainerStyle={styles.scrollContainer}>
+                    {recipes}
+                </ScrollView>
+
+                <SearchButton
+                    onChange={(filter) => this.setState({ filter: filter })}
+                />
+            </View>
+
         );
     }
 }
@@ -77,6 +86,9 @@ export default class Favorites extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+        height: '100%'
+    },
+    scrollContainer: {
         paddingTop: 20,
         alignItems: 'center'
     }

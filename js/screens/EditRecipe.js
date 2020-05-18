@@ -30,7 +30,7 @@ export default class EditRecipe extends React.Component {
     };
 
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
 
         // change header title
         this.props.navigation.setOptions({ title: <CustomFont>Bearbeiten</CustomFont> });

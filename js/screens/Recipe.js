@@ -37,7 +37,7 @@ export default class Recipe extends React.Component {
         this.setState({ recipe: this.props.route.params.recipe });
     }
 
-    componentWillReceiveProps(props) {
+    UNSAFE_componentWillReceiveProps(props) {
         this.setState({ recipe: props.route.params.recipe });
     }
 

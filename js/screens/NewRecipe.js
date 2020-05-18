@@ -8,11 +8,13 @@ import DurationInput from '../components/DurationInput';
 import NationalityInput from '../components/NationalityInput';
 import IngredientsInput from '../components/IngredientsInput';
 import PreparationInput from '../components/PreparationInput';
+import AuthorInput from '../components/AuthorInput';
 
 
 export default class NewRecipe extends React.Component {
     state = {
         recipe: {
+            id: null,
             image: null,
             title: '',
             duration: '',
@@ -21,7 +23,9 @@ export default class NewRecipe extends React.Component {
                 { amount: '', ingredient: '' }
             ],
             preparation: '',
-            favorite: null
+            favorite: null,
+            author: '',
+            createdAt: ''
         }
     };
 
@@ -116,6 +120,16 @@ export default class NewRecipe extends React.Component {
         });
     }
 
+    _handleAuthorInput(value) {
+        // update preparation in state.recipe
+        this.setState(prevState => {
+            let recipe = { ...prevState.recipe };
+            recipe['author'] = value;
+            return { recipe }
+
+        });
+    }
+
 
     render() {
         return (
@@ -150,6 +164,11 @@ export default class NewRecipe extends React.Component {
                 <PreparationInput
                     value={this.state.recipe.preparation}
                     onChange={(value) => this._handlePreparationInput(value)}
+                />
+
+                <AuthorInput
+                    value={this.state.recipe.author}
+                    onChange={(value) => this._handleAuthorInput(value)}
                 />
 
                 <Button

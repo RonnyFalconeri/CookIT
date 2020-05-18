@@ -11,7 +11,7 @@ export default class CustomFont extends React.Component {
         }
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         await Font.loadAsync({
             'pacifico': require('../../assets/fonts/Pacifico.ttf')
         })

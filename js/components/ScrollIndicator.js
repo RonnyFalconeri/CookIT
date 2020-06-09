@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 
 export default class ScrollIndicator extends React.Component {
     state = {
-        items: 6 // amount of items in HomeScreen
+        items: 7 // amount of items in HomeScreen
     };
 
     render() {

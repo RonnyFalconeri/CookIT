@@ -15,6 +15,7 @@ import OnlineSearch from './js/screens/OnlineSearch';
 import OnlineRecipe from './js/screens/OnlineRecipe';
 import RandomRecipe from './js/screens/RandomRecipe';
 import Settings from './js/screens/Settings';
+import Impressum from './js/screens/Impressum';
 
 
 
@@ -36,6 +37,7 @@ export default class App extends React.Component {
           <Stack.Screen name="OnlineRecipe" component={OnlineRecipe} options={pageHeaderBar} />
           <Stack.Screen name="RandomRecipe" component={RandomRecipe} options={pageHeaderBar} />
           <Stack.Screen name="Settings" component={Settings} options={pageHeaderBar} />
+          <Stack.Screen name="Impressum" component={Impressum} options={pageHeaderBar} />
         </Stack.Navigator>
       </NavigationContainer>
     );

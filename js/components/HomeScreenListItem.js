@@ -4,6 +4,12 @@ import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react
 
 export default class HomeScreenListItem extends React.Component {
     render() {
+
+        let txtColor = 'white';
+        if (this.props.color == 'white') {
+            txtColor = 'black';
+        }
+
         return (
             <TouchableOpacity
                 style={[styles.listItem, { backgroundColor: this.props.color }]}
@@ -17,7 +23,7 @@ export default class HomeScreenListItem extends React.Component {
                     imageStyle={styles.backgroundImage_style}
                 />
                 <View>
-                    <Text style={styles.listItem_label}>{this.props.title}</Text>
+                    <Text style={[styles.listItem_label, { color: txtColor }]}>{this.props.title}</Text>
                 </View>
 
             </TouchableOpacity>
@@ -46,7 +52,6 @@ const styles = StyleSheet.create({
     listItem_label: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'white',
         padding: 10
     },
     backgroundImage: {

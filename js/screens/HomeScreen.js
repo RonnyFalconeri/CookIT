@@ -78,6 +78,13 @@ export default class HomeScreen extends React.Component {
                         image={require('../../assets/images/settingsBg.png')}
                     />
 
+                    <HomeScreenListItem
+                        title="Impressum"
+                        onPress={() => this.props.navigation.navigate('Impressum')}
+                        color="white"
+                        image={require('../../assets/images/impressumBg.png')}
+                    />
+
                 </ScrollView>
 
 

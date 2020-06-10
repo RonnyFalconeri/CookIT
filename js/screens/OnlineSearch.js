@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Axios from 'axios';
 import * as Haptics from 'expo-haptics';
 import { ScrollView, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
@@ -117,7 +118,7 @@ export default class OnlineSearch extends React.Component {
                 }
             }, () => {
                 this.searchInput.clear();
-                this._searchRecipe();
+                this._searchRecipe(searchTerm);
             });
         }
 
@@ -128,9 +129,37 @@ export default class OnlineSearch extends React.Component {
         console.log('searching top recipes...');
     }
 
-    _searchRecipe() {
-        // TODO: API-Query -> recipe(s) based on given term, stored in state.recipes
-        console.log('searching recipe...');
+    _searchRecipe = async (term) => {
+        const APP_ID = "3653dc15";
+        const APP_KEY = "e34c9b96d20ff2a7ed87bd02c391e9e9";
+        const url = `https://api.edamam.com/search?q=${term}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+        const result = await Axios.get(url);
+
+        let recipesArray = [];
+        result.data.hits.forEach(e => {
+            let ingr = [];
+            e.recipe.ingredientLines.forEach(i => {
+                ingr.push({
+                    amount: i.split(' ')[0] + i.split(' ')[1],
+                    ingredient: String(i.split(' ').slice(2)).replace(',', ' ')
+                });
+            });
+
+            recipesArray.push({
+                image: e.recipe.image,
+                title: e.recipe.label,
+                duration: e.recipe.totalTime,
+                nationality: 'none',
+                ingredients: ingr,
+                preparation: 'Online-Rezepte haben keinen Zubereitungstext.',
+                saved: false,
+                author: 'API',
+                createdAt: Date.now()
+            });
+        });
+        console.log(recipesArray);
+        this.setState({ recipes: recipesArray });
+
     }
 
 
@@ -168,7 +197,7 @@ export default class OnlineSearch extends React.Component {
                     style={[{ backgroundColor: this.state.search.buttonColor }, styles.search]}
                     onPress={() => {
                         this._searchStart();
-                        Haptics.impactAsync('heavy')
+                        //Haptics.impactAsync('heavy')
                     }}
                 >
                     <Text style={styles.search_label}>{this.state.search.buttonLabel}</Text>

@@ -32,9 +32,16 @@ export default class OnlineSearchListItem extends React.Component {
             }
         });
 
+        let thumbnail;
+        if (this.props.image == null) {
+            thumbnail = <Image style={styles.image} source={this.state.image_show} />
+        } else {
+            thumbnail = <Image style={styles.image} source={{ uri: this.props.image }} />
+        }
+
         return (
             <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
-                <Image style={styles.image} source={this.state.image_show} />
+                {thumbnail}
                 {image}
                 <Text style={styles.title} >{this.props.title}</Text>
                 <View style={styles.column}>

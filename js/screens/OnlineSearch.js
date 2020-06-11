@@ -31,40 +31,6 @@ export default class OnlineSearch extends React.Component {
                 saved: true,
                 author: 'Ronny Falconeri',
                 createdAt: '12:35 Uhr, 8. März 2020'
-            },
-            {
-                id: 2,
-                image: null,
-                title: 'Spaghetti Carbonara',
-                duration: '15',
-                nationality: 'ita',
-                ingredients: [
-                    { amount: '200g', ingredient: 'Spaghetti' },
-                    { amount: '10g', ingredient: 'Bauchspeck geschnitten' },
-                    { amount: '2', ingredient: 'Sahne' }
-
-                ],
-                preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata.',
-                saved: true,
-                author: 'Mert Topcuoglu',
-                createdAt: '13:22 Uhr, 10. April 2020'
-            },
-            {
-                id: 3,
-                image: null,
-                title: 'Quacamole',
-                duration: '4',
-                nationality: 'gre',
-                ingredients: [
-                    { amount: '2', ingredient: 'Avocados' },
-                    { amount: '3', ingredient: 'Tomaten' },
-                    { amount: '1', ingredient: 'Zwiebel' },
-                    { amount: '2', ingredient: 'Chilli' }
-                ],
-                preparation: '15 Minuten Kochen, dann salzen.',
-                saved: false,
-                author: 'Ennio Morricone',
-                createdAt: '00:00 Uhr, 2. Mai 2020'
             }
         ]
     };
@@ -140,8 +106,6 @@ export default class OnlineSearch extends React.Component {
         const url = `https://api.edamam.com/search?q=${term}&app_id=${APP_ID}&app_key=${APP_KEY}`;
         const result = await Axios.get(url);
 
-        console.log(result);
-
         // parse received data
         let recipesArray = [];
         result.data.hits.forEach(e => {
@@ -174,8 +138,6 @@ export default class OnlineSearch extends React.Component {
                 createdAt: Date.now()
             });
         });
-
-        console.log(recipesArray);
 
         // store loaded API recipes in state
         this.setState({ recipes: recipesArray });

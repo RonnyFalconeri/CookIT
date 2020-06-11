@@ -70,6 +70,17 @@ export default class Recipe extends React.Component {
                     />
                 );
             } else {
+                // if default recipe -> change source type
+                if (this.state.recipe.id.includes('default_')) {
+                    return (
+                        <Image
+                            key={'picked'}
+                            style={styles.image}
+                            source={this.state.recipe.image}
+                        />
+                    );
+                }
+
                 return (
                     <Image
                         key={'picked'}

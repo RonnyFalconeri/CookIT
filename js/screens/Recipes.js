@@ -11,8 +11,8 @@ export default class Recipes extends React.Component {
     state = {
         recipes: [
             {
-                id: 1,
-                image: null,
+                id: 'default_1',
+                image: require('../../assets/images/trofie.jpg'),
                 title: 'Trofie alla Bolognese',
                 duration: '90',
                 nationality: 'ITA',
@@ -35,8 +35,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 2,
-                image: null,
+                id: 'default_2',
+                image: require('../../assets/images/guacamole.jpg'),
                 title: 'Guacamole',
                 duration: '10',
                 nationality: 'MEX',
@@ -56,8 +56,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 3,
-                image: null,
+                id: 'default_3',
+                image: require('../../assets/images/dorate.jpg'),
                 title: 'Gebackende Dorate',
                 duration: '50',
                 nationality: 'ITA',
@@ -76,8 +76,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 4,
-                image: null,
+                id: 'default_4',
+                image: require('../../assets/images/zuchinisahne.jpg'),
                 title: 'Penne mit Zuchini-Sahne-Soße',
                 duration: '20',
                 nationality: 'ITA',
@@ -98,8 +98,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 5,
-                image: null,
+                id: 'default_5',
+                image: require('../../assets/images/sarma.jpg'),
                 title: 'Sarma',
                 duration: '110',
                 nationality: 'TUR',
@@ -128,8 +128,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 6,
-                image: null,
+                id: 'default_6',
+                image: require('../../assets/images/jägersoße.jpg'),
                 title: 'Jägermeister-Soße für Burger',
                 duration: '30',
                 nationality: 'GER',
@@ -147,8 +147,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 7,
-                image: null,
+                id: 'default_7',
+                image: require('../../assets/images/burger.jpg'),
                 title: 'Klassische Burger',
                 duration: '60',
                 nationality: 'USA',
@@ -167,8 +167,8 @@ export default class Recipes extends React.Component {
                 createdAt: '00:00 Uhr, 25. Mai 2020'
             },
             {
-                id: 8,
-                image: null,
+                id: 'default_8',
+                image: require('../../assets/images/pilzsalat.jpg'),
                 title: 'Pilzsalat',
                 duration: '30',
                 nationality: 'GER',

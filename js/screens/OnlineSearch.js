@@ -12,8 +12,8 @@ export default class OnlineSearch extends React.Component {
     state = {
         search: {
             title: '',
-            buttonLabel: 'Suchen',
-            result: 'Top 50 Recipes:',
+            buttonLabel: 'Zufällig',
+            result: 'Random',
             buttonColor: '#134f5c'
         },
         recipes: [
@@ -77,8 +77,8 @@ export default class OnlineSearch extends React.Component {
         // init input ref
         this.searchInput = React.createRef();
 
-        // init list of top 50 recipes
-        this._searchTopRecipes()
+        // search random recipe at start
+        this._searchStart();
     }
 
 
@@ -86,6 +86,7 @@ export default class OnlineSearch extends React.Component {
         // update title in state.recipe
         this.setState(prevState => {
             let search = { ...prevState.search };
+            search['buttonLabel'] = "Suchen";
             search['title'] = value;
             return { search }
         });
@@ -95,17 +96,23 @@ export default class OnlineSearch extends React.Component {
         let searchTerm = this.state.search.title;
 
         if (searchTerm === '') {
-            // if search is empty -> show top 50 recipes
+            const labelstr = "Almonds,Apple,Apricot,Asparagus,Avocado,Banana,Barley,Basil,Beef,Beet Greens,Beets,Bell Peppers,Black Beans,Black Pepper,Blueberries,Bok Choy,Broccoli,Brown Rice,Brussels Sprouts,Buckwheat,Cabbage,Cantaloupe,Carrots,Cashews,Cauliflower,Celery,Cheese,Chicken,Chili Peppers,Cilantro,Cinnamon,Cloves,Cod,Collard Greens,Corn,Cow's milk,Cranberries,Cucumber,Cumin,Dill,Dried Peas,Eggplant,Eggs,Fennel,Figs,Flaxseeds,Garbanzo Beans,Garlic,Ginger,Grapefruit,Grapes,Green Beans,Green Peas,Kale,Kidney Beans,Kiwifruit,Lamb,Leeks,Lemons and Limes,Lentils,Lima Beans,Millet,Miso,Mushrooms, Crimini,Mushrooms, Shiitake,Mustard Greens,Mustard Seeds,Navy Beans,Oats,Olive Oil,Olives,Onions,Oranges,Oregano,Papaya,Parsley,Peanuts,Pear,Peppermint,Pineapple,Pinto Beans,Plum,Potatoes,Pumpkin Seeds,Quinoa,Raisins,Raspberries,Romaine Lettuce,Rosemary,Rye,Sage,Salmon,Sardines,Scallops,Sea Vegetables,Sesame Seeds,Shrimp,Soy Sauce,Soybeans,Spinach,Strawberries,Summer Squash,Sunflower Seeds,Sweet Potato,Swiss Chard,Tempeh,Thyme,Tofu,Tomatoes,Tuna,Turkey,Turmeric,Turnip Greens,Walnuts,Watermelon,Wheat,Winter Squash,Yogurt";
+            const recipeLabels = labelstr.split(',');
+
+            // select random label
+            let randomRecipe = recipeLabels[Math.floor(Math.random() * recipeLabels.length)]
+
+            // if search is empty -> search random recipe
             this.setState({
                 search: {
                     title: '',
-                    result: 'Top 50 Recipes:',
-                    buttonLabel: 'Suchen',
+                    result: 'Zufällig-Suche: ' + randomRecipe,
+                    buttonLabel: 'Zufällig',
                     buttonColor: '#134f5c'
                 }
             }, () => {
                 this.searchInput.clear();
-                this._searchTopRecipes();
+                this._searchRecipe(randomRecipe);
             });
         } else {
             // search recipes based on term
@@ -124,27 +131,37 @@ export default class OnlineSearch extends React.Component {
 
     }
 
-    _searchTopRecipes() {
-        // TODO: API-Query -> TOP 50 recipes, stored in state.recipes
-        console.log('searching top recipes...');
-    }
 
     _searchRecipe = async (term) => {
+
+        // make API call
         const APP_ID = "3653dc15";
         const APP_KEY = "e34c9b96d20ff2a7ed87bd02c391e9e9";
         const url = `https://api.edamam.com/search?q=${term}&app_id=${APP_ID}&app_key=${APP_KEY}`;
         const result = await Axios.get(url);
 
+        console.log(result);
+
+        // parse received data
         let recipesArray = [];
         result.data.hits.forEach(e => {
+            // for every recipe ...
+
             let ingr = [];
             e.recipe.ingredientLines.forEach(i => {
+                // for every ingredient in given recipe
                 ingr.push({
+                    /*
+                        ingredient as string "1 tablespoon of blabla blublu"
+                        amount -> first two words "1 tablespoon"
+                        ingredient -> rest of string "blabla blublu"
+                    */
                     amount: i.split(' ')[0] + i.split(' ')[1],
                     ingredient: String(i.split(' ').slice(2)).replace(',', ' ')
                 });
             });
 
+            // specify recipe data in compatible object format 
             recipesArray.push({
                 image: e.recipe.image,
                 title: e.recipe.label,
@@ -157,7 +174,10 @@ export default class OnlineSearch extends React.Component {
                 createdAt: Date.now()
             });
         });
+
         console.log(recipesArray);
+
+        // store loaded API recipes in state
         this.setState({ recipes: recipesArray });
 
     }

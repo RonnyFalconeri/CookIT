@@ -27,8 +27,24 @@ export default class RandomRecipe extends React.Component {
         database.transaction(
             transaction => transaction.executeSql('SELECT * FROM recipe', [], (_, result) => {
 
+                let rcps = [];
+                result.rows._array.forEach(e => {
+                    rcps.push({
+                        id: e.id,
+                        image: null,
+                        title: e.title,
+                        duration: e.duration,
+                        nationality: e.nationality,
+                        ingredients: JSON.parse(e.ingredients),
+                        preparation: e.preparation,
+                        favorite: e.favorite,
+                        author: e.author,
+                        createdAt: e.createdAt
+                    });
+                });
+
                 // show random item of recipe array
-                this.setState({ recipe: result.rows._array[Math.floor(Math.random() * result.rows.length)] });
+                this.setState({ recipe: rcps[Math.floor(Math.random() * result.rows.length)] });
             }
             )
         );
@@ -41,7 +57,7 @@ export default class RandomRecipe extends React.Component {
                 <Image
                     key={'default'}
                     style={styles.image}
-                    source={this.state.recipe.image}
+                    source={this.state.image_default}
                 />
 
                 <Add2FavoritesButton
@@ -121,6 +137,8 @@ const styles = StyleSheet.create({
     kochen: {
         height: 65,
         width: 230,
+        position: 'absolute',
+        bottom: 210,
         backgroundColor: '#f6b26b',
         borderRadius: 10,
         alignItems: 'center',
@@ -145,6 +163,8 @@ const styles = StyleSheet.create({
     weiter: {
         height: 50,
         width: 200,
+        position: 'absolute',
+        bottom: 130,
         backgroundColor: '#d9d9d9',
         borderRadius: 10,
         alignItems: 'center',

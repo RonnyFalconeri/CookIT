@@ -58,7 +58,6 @@ export default class IngredientsInput extends React.Component {
             ingredients.push({ amount: '', ingredient: '' });
             return { ingredients }
         }, () => {
-            console.log(this.state.ingredients);
             this.props.onChange(this.state.ingredients);
 
             if (this.state.ingredients.length > 1) {

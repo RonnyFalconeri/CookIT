@@ -59,8 +59,6 @@ export default class OnlineRecipe extends React.Component {
             )
         );
 
-        console.log(Date());
-        //Sun Jun 21 2020 10:03:16 GMT+0200 (CEST)
         this.props.navigation.goBack();
     }
 

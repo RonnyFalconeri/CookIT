@@ -87,7 +87,7 @@ export default class ImageInput extends React.Component {
             }
 
             // CameraRoll.saveToCameraRoll(this.state.image);
-            console.log(result);
+            //console.log(result);
         } catch (E) {
             console.log(E);
         }

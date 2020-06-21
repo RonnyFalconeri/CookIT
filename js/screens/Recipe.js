@@ -49,6 +49,7 @@ export default class Recipe extends React.Component {
 
     render() {
 
+        console.log(this.props.route.params.recipe.ingredients);
         // render variable amount of rows
         let ingredients = this.state.portions.map((key, i) => {
             return (

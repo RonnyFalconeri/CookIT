@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as SQLite from 'expo-sqlite';
 import * as Haptics from 'expo-haptics';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
@@ -7,9 +8,11 @@ import CustomFont from '../components/CustomFont';
 import SearchButton from '../components/SearchButton';
 
 
+const database = SQLite.openDatabase('recipes.db');
+
 export default class Recipes extends React.Component {
     state = {
-        recipes: [
+        recipes: [/*
             {
                 id: 'default_1',
                 image: require('../../assets/images/trofie.jpg'),
@@ -186,7 +189,7 @@ export default class Recipes extends React.Component {
                 favorite: false,
                 author: 'Wenjie Wang',
                 createdAt: '00:00 Uhr, 25. Mai 2020'
-            },
+            }*/
         ],
         filter: null
     };
@@ -195,6 +198,43 @@ export default class Recipes extends React.Component {
 
         // change header title
         this.props.navigation.setOptions({ title: <CustomFont>Rezepte</CustomFont> });
+
+        // select recipes from DB
+        this._retrieveRecipes();
+    }
+
+    _retrieveRecipes() {
+        database.transaction(
+            transaction => transaction.executeSql('SELECT * FROM recipe', [], (_, result) => {
+
+                //console.log(result.rows._array[4].ingredients);
+
+                let ingr = [];
+                Array(result.rows._array[4].ingredients).forEach(k => {
+                    ingr.push(k);
+                });
+                console.log(ingr);
+
+                let rcps = [];
+                result.rows._array.forEach(e => {
+                    rcps.push({
+                        id: e.id,
+                        image: null,
+                        title: e.title,
+                        duration: e.duration,
+                        nationality: e.nationality,
+                        ingredients: e.ingredients,
+                        preparation: e.preparation,
+                        favorite: e.favorite,
+                        author: e.author,
+                        createdAt: e.createdAt
+                    });
+                });
+
+                this.setState({ recipes: rcps });
+            }
+            )
+        );
     }
 
     render() {

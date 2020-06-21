@@ -179,7 +179,7 @@ export default class OnlineSearch extends React.Component {
                     style={[{ backgroundColor: this.state.search.buttonColor }, styles.search]}
                     onPress={() => {
                         this._searchStart();
-                        //Haptics.impactAsync('heavy')
+                        Haptics.impactAsync('heavy')
                     }}
                 >
                     <Text style={styles.search_label}>{this.state.search.buttonLabel}</Text>

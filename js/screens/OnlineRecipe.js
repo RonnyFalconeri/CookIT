@@ -55,10 +55,12 @@ export default class OnlineRecipe extends React.Component {
         database.transaction(
             transaction => transaction.executeSql(
                 'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                [amountRows + 1, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, Date.now()]
+                [amountRows + 1, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, Date()]
             )
         );
 
+        console.log(Date());
+        //Sun Jun 21 2020 10:03:16 GMT+0200 (CEST)
         this.props.navigation.goBack();
     }
 

@@ -46,7 +46,7 @@ const defaultRecipes = [
     preparation: 'Olivenöl in den Topf. Zwiebel klein schneiden und auf Topf dünnsten. Sellerie und Möhre klein schneiden und hinzufügen. Rindhackfleisch hinzufügen und anbraten, dabei Muskat-Pfeffer und Salz nach belieben mitmischen. Wenn alles gebraten ist, Tomatesoße hinzufügen und Zucker. Alles ein Stunde kochen lassen. Danach Wasser im extra Topf kochen, Pasta hinzufügen und salzen. 10 min kochen lassen und dann mit Basilikum auf den Nudel servieren.',
     favorite: false,
     author: 'Claudia Falconeri',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:16 GMT+0200 (CEST)'
   },
   {
     id: 'default_2',
@@ -67,7 +67,7 @@ const defaultRecipes = [
     preparation: 'Tomaten, Knoblauch, Zwiebel, Chillischoten klein schneiden. Avocados mit einem Löffel aushüllen und zu den anderen Zutaten hinzufügen und mit Messer/Löffel/Gabel zerkleinern, dann Zitrone auspressen. Zuletzt mit einem Mixer alles zerkleinern und dabei Salz und Pfeffer hinzufügen. ',
     favorite: false,
     author: 'Ronny Falconeri',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:17 GMT+0200 (CEST)'
   },
   {
     id: 'default_3',
@@ -87,7 +87,7 @@ const defaultRecipes = [
     preparation: 'Fisch putzen und in Backform legen. Olivenöl mit Oregano, Salz, Knoblauch (kleingeschnitten) und Pfeffer in eine kleine Schüssel mischen. Mischung in und auf den Fisch füllen und in den Backofen bei 200 Grad Celsius schieben und 45 Min kochen lassen. Danach mit Zitrone servieren.',
     favorite: false,
     author: 'Claudia Falconeri',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:18 GMT+0200 (CEST)'
   },
   {
     id: 'default_4',
@@ -109,7 +109,7 @@ const defaultRecipes = [
     preparation: 'Olivenöl, Zwiebeln und Knoblauch kleingeschnitten mischen und dünsten lassen. Cherrytomaten und Zuchini klein schneiden und hinzumischen. Sahne hinzurühren und 20 Min kochen lassen. Danach ein Topf mit Wasser und Brühewürfel vorbereiten. Die Penne hinzufügen, sobald das Wasser kocht und 10 Min kochen lassen. Nudeln abgießen und in die Pfanne zur Sahne schmeißen und umrühren. Schließlich mit Parmesan servieren.',
     favorite: false,
     author: 'Claudia Falconeri',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:19 GMT+0200 (CEST)'
   },
   {
     id: 'default_5',
@@ -139,7 +139,7 @@ const defaultRecipes = [
     preparation: 'Für die Füllung folgende Zutaten kleinhacken, zusammenmischen und kochen: Reis, Petersilie, Knoblauch, Zwiebeln, Spitzpaprika, Paprikamark, Olivenöl, Rapsöl, Salz, Paprikapulver, Pfeffer, Sumak-Eski (oder Zitronensalz). Die Weinblätter damit füllen. Danach Olivenöl in den Topf geben und alle gefüllten Weinblätter darin stapeln. Den Topf mit Wasser füllen bis alles bedeckt ist. Dann etwas Salz und „Sumak eskisi“ darauf geben.',
     favorite: false,
     author: 'Silan Yüzükan',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:20 GMT+0200 (CEST)'
   },
   {
     id: 'default_6',
@@ -158,7 +158,7 @@ const defaultRecipes = [
     preparation: 'Alle Zutaten in der richtigen Menge in einem Topf vermischen und bei mittlerer Hitze verrühren. Die Soße kann man nach Geschmack dickflüssiger machen, indem man weniger Cola und Worchestersoße nimmt.',
     favorite: false,
     author: 'Wenjie Wang',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:21 GMT+0200 (CEST)'
   },
   {
     id: 'default_7',
@@ -178,7 +178,7 @@ const defaultRecipes = [
     preparation: 'Alle Zutaten in der vorgegebenen Menge auf Tellern vorbereiten. Das Hackfleisch wird zuerst geknetet und dann in gleichmäßigen Portionen auf eine Pfanne gelegt. Die Bratzeit variert nach gewünschtem Zustand des Pattie (medium oder durch) und nach Hitze der Pfanne. Während des Braten etwas Salz auf den Patties verteilen und die Burger-Buns mit Schmelzkäse in den Ofen schieben. Sobald die Patties und die Buns fertig sind, diese mit den anderen Zutaten zu einem Burger zusanmmenlegen und mit ein, zwei Zahnstochern fixieren. Falls Soße zur Verfügung steht, kann diese als Abschluss noch über den Patties verteilt werden.',
     favorite: false,
     author: 'Wenjie Wang',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
+    createdAt: 'Sun Jun 21 2020 10:03:22 GMT+0200 (CEST)'
   },
   {
     id: 'default_8',
@@ -199,8 +199,8 @@ const defaultRecipes = [
     preparation: 'Alle Zutaten in der vorgegebenen Menge auf Tellern vorbereiten. Das Hackfleisch wird zuerst geknetet und dann in gleichmäßigen Portionen auf eine Pfanne gelegt. Die Bratzeit variert nach gewünschtem Zustand des Pattie (medium oder durch) und nach Hitze der Pfanne. Während des Braten etwas Salz auf den Patties verteilen und die Burger-Buns mit Schmelzkäse in den Ofen schieben. Sobald die Patties und die Buns fertig sind, diese mit den anderen Zutaten zu einem Burger zusanmmenlegen und mit ein, zwei Zahnstochern fixieren. Falls Soße zur Verfügung steht, kann diese als Abschluss noch über den Patties verteilt werden.',
     favorite: false,
     author: 'Wenjie Wang',
-    createdAt: '00:00 Uhr, 25. Mai 2020'
-  },
+    createdAt: 'Sun Jun 21 2020 10:03:23 GMT+0200 (CEST)'
+  }
 ];
 
 export default class App extends React.Component {

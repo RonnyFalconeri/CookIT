@@ -27,23 +27,21 @@ export default class Recipes extends React.Component {
 
     _retrieveRecipes() {
 
-        let query = 'SELECT * FROM recipe';
-        //let query = 'SELECT * FROM recipe WHERE duration=ANY AND nationality=ANY AND title LIKE "T%" AND author=ANY';
-        //let query = 'SELECT * FROM recipe WHERE nationality=ALL AND title LIKE "g%"';
+        let query = 'SELECT * FROM recipe ORDER BY title';
+
+        //console.log(this.state.filter);
 
         if (this.state.filter != null) {
 
-            console.log(this.state.filter)
-
             let where1 = '';
+            let and1 = false;
+
             if (this.state.filter.duration != null ||
                 this.state.filter.nationality != null ||
                 this.state.filter.title != null ||
                 this.state.filter.author != null) {
                 where1 = ' WHERE ';
             }
-
-            let and1 = false;
 
 
             let dur = this.state.filter.duration;
@@ -88,14 +86,14 @@ export default class Recipes extends React.Component {
                 where1 = '';
             }
 
-            query = 'SELECT * FROM recipe' + dur + nat + tit + aut;
-            console.log(query);
+            query = 'SELECT * FROM recipe' + dur + nat + tit + aut + ' ORDER BY title';
+
+            //console.log(query);
         }
 
 
         database.transaction(
             transaction => transaction.executeSql(query, [], (_, result) => {
-                console.log('läuft')
                 let rcps = [];
                 result.rows._array.forEach(e => {
                     rcps.push({
@@ -111,6 +109,24 @@ export default class Recipes extends React.Component {
                         createdAt: e.createdAt
                     });
                 });
+
+
+                if (this.state.filter != null) {
+                    if (this.state.filter.sortByOld) {
+                        rcps.sort((a, b) => {
+                            let dateA = new Date(a.createdAt), dateB = new Date(b.createdAt);
+                            return dateA - dateB;
+                        });
+                    }
+
+                    if (this.state.filter.sortByNew) {
+                        rcps.sort((a, b) => {
+                            let dateA = new Date(a.createdAt), dateB = new Date(b.createdAt);
+                            return dateB - dateA;
+                        });
+                    }
+                }
+
 
                 this.setState({ recipes: rcps });
             }

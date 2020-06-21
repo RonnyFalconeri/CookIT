@@ -76,7 +76,7 @@ export default class NewRecipe extends React.Component {
         database.transaction(
             transaction => transaction.executeSql(
                 'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                [amountRows + 1, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, Date.now()]
+                [amountRows + 1, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, Date()]
             )
         );
         //console.log(recipe);

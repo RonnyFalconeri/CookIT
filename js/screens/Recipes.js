@@ -213,7 +213,7 @@ export default class Recipes extends React.Component {
                 Array(result.rows._array[4].ingredients).forEach(k => {
                     ingr.push(k);
                 });
-                console.log(ingr);
+                //console.log(ingr);
 
                 let rcps = [];
                 result.rows._array.forEach(e => {
@@ -223,7 +223,7 @@ export default class Recipes extends React.Component {
                         title: e.title,
                         duration: e.duration,
                         nationality: e.nationality,
-                        ingredients: e.ingredients,
+                        ingredients: Array(e.ingredients),
                         preparation: e.preparation,
                         favorite: e.favorite,
                         author: e.author,

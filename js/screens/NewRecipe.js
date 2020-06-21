@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as SQLite from 'expo-sqlite';
 import { ScrollView, StyleSheet, Button, Alert } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
@@ -10,6 +11,8 @@ import IngredientsInput from '../components/IngredientsInput';
 import PreparationInput from '../components/PreparationInput';
 import AuthorInput from '../components/AuthorInput';
 
+
+const database = SQLite.openDatabase('recipes.db');
 
 export default class NewRecipe extends React.Component {
     state = {
@@ -51,7 +54,7 @@ export default class NewRecipe extends React.Component {
         }
 
         if (valid) { // inputs are valid
-            this._saveInDB();
+            this._saveInDB(this.state.recipe);
             this.props.navigation.navigate('HomeScreen');
         } else { // inputs are invalid
             Alert.alert('Leere Pflichtfelder', 'Bitte füllen Sie alle Pflichtfelder.')
@@ -59,9 +62,24 @@ export default class NewRecipe extends React.Component {
 
     }
 
-    _saveInDB() {
-        // TODO: save recipe in DB
-        console.log('saving to DB...');
+    _saveInDB(recipe) {
+
+        // get amount of rows -> prepare id
+        let amountRows;
+        database.transaction(
+            transaction => transaction.executeSql('SELECT * FROM recipe', [], (_, result) => {
+                amountRows = result.rows.length;
+            })
+        );
+
+        // save recipe in DB
+        database.transaction(
+            transaction => transaction.executeSql(
+                'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                [amountRows + 1, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, Date.now()]
+            )
+        );
+        //console.log(recipe);
     }
 
     _handleImageInput(value) {

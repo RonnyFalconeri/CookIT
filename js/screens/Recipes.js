@@ -213,7 +213,8 @@ export default class Recipes extends React.Component {
                 Array(result.rows._array[4].ingredients).forEach(k => {
                     ingr.push(k);
                 });
-                //console.log(ingr);
+
+                console.log(result.rows.length);
 
                 let rcps = [];
                 result.rows._array.forEach(e => {

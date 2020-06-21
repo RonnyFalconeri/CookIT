@@ -1,10 +1,13 @@
 import * as React from 'react';
+import * as SQLite from 'expo-sqlite';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
 import Separator from '../components/Separator';
 import SaveButton from '../components/SaveButton';
 
+
+const database = SQLite.openDatabase('recipes.db');
 
 export default class OnlineRecipe extends React.Component {
     state = {
@@ -38,8 +41,24 @@ export default class OnlineRecipe extends React.Component {
     }
 
     _saveRecipe() {
-        // TODO: save recipe to DB
-        console.log("recipe will be saved.");
+        // get amount of rows -> prepare id
+        let amountRows;
+        database.transaction(
+            transaction => transaction.executeSql('SELECT * FROM recipe', [], (_, result) => {
+                amountRows = result.rows.length;
+            })
+        );
+
+        let recipe = this.state.recipe;
+
+        // save recipe in DB
+        database.transaction(
+            transaction => transaction.executeSql(
+                'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                [amountRows + 1, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, Date.now()]
+            )
+        );
+
         this.props.navigation.goBack();
     }
 

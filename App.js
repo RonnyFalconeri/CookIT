@@ -207,7 +207,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
 
-    this._resetDB();
+    //this._resetDB();
 
     this._initDB();
 
@@ -239,7 +239,7 @@ export default class App extends React.Component {
           id text primary key not null,\
           image text,\
           title text not null,\
-          duration text not null,\
+          duration int not null,\
           nationality text not null,\
           ingredients text not null,\
           preparation text not null,\

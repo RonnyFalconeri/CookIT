@@ -204,12 +204,13 @@ export default class Settings extends React.Component {
             transaction => transaction.executeSql('DELETE FROM recipe')
         );
 
+        // refill default recipes
         let recipes = defaultRecipes;
         recipes.forEach(recipe => {
             database.transaction(
                 transaction => transaction.executeSql(
                     'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                    [recipe.id, null, recipe.title, recipe.duration, recipe.nationality, recipe.ingredients, recipe.preparation, recipe.author, recipe.favorite, recipe.createdAt]
+                    [recipe.id, null, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, recipe.createdAt]
                 )
             );
         });

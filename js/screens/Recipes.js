@@ -94,6 +94,7 @@ export default class Recipes extends React.Component {
 
         database.transaction(
             transaction => transaction.executeSql(query, [], (_, result) => {
+
                 let rcps = [];
                 result.rows._array.forEach(e => {
                     rcps.push({
@@ -102,7 +103,7 @@ export default class Recipes extends React.Component {
                         title: e.title,
                         duration: e.duration,
                         nationality: e.nationality,
-                        ingredients: Array(e.ingredients),
+                        ingredients: JSON.parse(e.ingredients),
                         preparation: e.preparation,
                         favorite: e.favorite,
                         author: e.author,
@@ -127,6 +128,7 @@ export default class Recipes extends React.Component {
                     }
                 }
 
+                //console.log(rcps);
 
                 this.setState({ recipes: rcps });
             }

@@ -207,21 +207,12 @@ export default class App extends React.Component {
 
   componentDidMount() {
 
-    //this._resetDB();
+    this._resetDB();
 
     this._initDB();
 
     this._initDefaultRecipes();
 
-  }
-
-  _saveInDB(recipe) {
-    database.transaction(
-      transaction => transaction.executeSql(
-        'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-        [recipe.id, recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, recipe.createdAt]
-      )
-    );
   }
 
   _resetDB() {
@@ -241,7 +232,7 @@ export default class App extends React.Component {
           title varchar(255) not null,\
           duration varchar(255) not null,\
           nationality varchar(255) not null,\
-          ingredients varchar(255) not null,\
+          ingredients longblob not null,\
           preparation varchar(255) not null,\
           author varchar(255) not null,\
           favorite bit,\
@@ -253,11 +244,12 @@ export default class App extends React.Component {
 
   _initDefaultRecipes() {
     let recipes = defaultRecipes;
+
     recipes.forEach(recipe => {
       database.transaction(
         transaction => transaction.executeSql(
           'INSERT INTO recipe (id, image, title, duration, nationality, ingredients, preparation, author, favorite, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-          [recipe.id, null, recipe.title, recipe.duration, recipe.nationality, recipe.ingredients, recipe.preparation, recipe.author, recipe.favorite, recipe.createdAt]
+          [recipe.id, null, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.favorite, recipe.createdAt]
         )
       );
     });

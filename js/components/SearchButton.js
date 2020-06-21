@@ -12,12 +12,10 @@ import SortByTimeInput from '../components/SortByTimeInput';
 export default class SearchButton extends React.Component {
     state = {
         recipeFilter: {
-            title: '',
-            duration: '',
-            nationality: 'none',
-            ingredients: [
-                { amount: '', ingredient: '' }
-            ],
+            title: null,
+            duration: null,
+            nationality: null,
+            author: null,
             sortByNew: false,
             sortByOld: false
         },
@@ -70,12 +68,10 @@ export default class SearchButton extends React.Component {
     _resetFilter() {
         this.setState({
             recipeFilter: {
-                title: '',
-                duration: '',
-                nationality: 'none',
-                ingredients: [
-                    { amount: '', ingredient: '' }
-                ],
+                title: null,
+                duration: null,
+                nationality: null,
+                author: null,
                 sortByNew: false,
                 sortByOld: false
             }
@@ -141,7 +137,6 @@ export default class SearchButton extends React.Component {
                             title="Zurücksetzen"
                             onPress={() => {
                                 this._resetFilter();
-                                this.setState({ modalVisible: false });
                             }}
                         />
 

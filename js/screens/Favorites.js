@@ -155,9 +155,6 @@ export default class Favorites extends React.Component {
                     {recipes}
                 </ScrollView>
 
-                <SearchButton
-                    onChange={(filter) => this.setState({ filter: filter })}
-                />
             </View>
 
         );

@@ -44,7 +44,7 @@ const defaultRecipes = [
       { amount: '1 Prise', ingredient: 'Zucker' }
     ],
     preparation: 'Olivenöl in den Topf. Zwiebel klein schneiden und auf Topf dünnsten. Sellerie und Möhre klein schneiden und hinzufügen. Rindhackfleisch hinzufügen und anbraten, dabei Muskat-Pfeffer und Salz nach belieben mitmischen. Wenn alles gebraten ist, Tomatesoße hinzufügen und Zucker. Alles ein Stunde kochen lassen. Danach Wasser im extra Topf kochen, Pasta hinzufügen und salzen. 10 min kochen lassen und dann mit Basilikum auf den Nudel servieren.',
-    favorite: true,
+    favorite: false,
     author: 'Claudia Falconeri',
     createdAt: '00:00 Uhr, 25. Mai 2020'
   },
@@ -65,14 +65,14 @@ const defaultRecipes = [
       { amount: '1', ingredient: 'Pfeffer' }
     ],
     preparation: 'Tomaten, Knoblauch, Zwiebel, Chillischoten klein schneiden. Avocados mit einem Löffel aushüllen und zu den anderen Zutaten hinzufügen und mit Messer/Löffel/Gabel zerkleinern, dann Zitrone auspressen. Zuletzt mit einem Mixer alles zerkleinern und dabei Salz und Pfeffer hinzufügen. ',
-    favorite: true,
+    favorite: false,
     author: 'Ronny Falconeri',
     createdAt: '00:00 Uhr, 25. Mai 2020'
   },
   {
     id: 'default_3',
     image: null,//require('assets/images/dorate.jpg'),
-    title: 'Gebackende Dorate',
+    title: 'Gebackene Dorate',
     duration: '50',
     nationality: 'ITA',
     ingredients: [
@@ -137,7 +137,7 @@ const defaultRecipes = [
       { amount: '1 Prise', ingredient: 'Sumak-Eski' }
     ],
     preparation: 'Für die Füllung folgende Zutaten kleinhacken, zusammenmischen und kochen: Reis, Petersilie, Knoblauch, Zwiebeln, Spitzpaprika, Paprikamark, Olivenöl, Rapsöl, Salz, Paprikapulver, Pfeffer, Sumak-Eski (oder Zitronensalz). Die Weinblätter damit füllen. Danach Olivenöl in den Topf geben und alle gefüllten Weinblätter darin stapeln. Den Topf mit Wasser füllen bis alles bedeckt ist. Dann etwas Salz und „Sumak eskisi“ darauf geben.',
-    favorite: true,
+    favorite: false,
     author: 'Silan Yüzükan',
     createdAt: '00:00 Uhr, 25. Mai 2020'
   },
@@ -237,15 +237,15 @@ export default class App extends React.Component {
       transaction => transaction.executeSql(
         'CREATE TABLE IF NOT EXISTS recipe(\
           id text primary key not null,\
-          image text,\
-          title text not null,\
-          duration int not null,\
-          nationality text not null,\
-          ingredients text not null,\
-          preparation text not null,\
-          author text not null,\
+          image varchar(255),\
+          title varchar(255) not null,\
+          duration varchar(255) not null,\
+          nationality varchar(255) not null,\
+          ingredients varchar(255) not null,\
+          preparation varchar(255) not null,\
+          author varchar(255) not null,\
           favorite bit,\
-          createdAt text not null\
+          createdAt varchar(255) not null\
           );'
       )
     );

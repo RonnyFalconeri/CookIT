@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as SQLite from 'expo-sqlite';
 import { ScrollView, StyleSheet, Button, Alert } from 'react-native';
 
 import CustomFont from '../components/CustomFont';
@@ -10,6 +11,8 @@ import IngredientsInput from '../components/IngredientsInput';
 import PreparationInput from '../components/PreparationInput';
 import AuthorInput from '../components/AuthorInput';
 
+
+const database = SQLite.openDatabase('recipes.db');
 
 export default class EditRecipe extends React.Component {
     state = {
@@ -62,8 +65,15 @@ export default class EditRecipe extends React.Component {
     }
 
     _saveInDB() {
-        // TODO: save recipe in DB
-        console.log('saving to DB...');
+        let recipe = this.state.recipe;
+
+        // save recipe in DB
+        database.transaction(
+            transaction => transaction.executeSql(
+                'UPDATE recipe SET image=?, title=?, duration=?, nationality=?, ingredients=?, preparation=?, author=? WHERE id=?',
+                [recipe.image, recipe.title, recipe.duration, recipe.nationality, JSON.stringify(recipe.ingredients), recipe.preparation, recipe.author, recipe.id]
+            )
+        );
     }
 
     _deleteRecipe() {

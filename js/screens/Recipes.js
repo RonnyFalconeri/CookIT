@@ -26,9 +26,76 @@ export default class Recipes extends React.Component {
     }
 
     _retrieveRecipes() {
-        database.transaction(
-            transaction => transaction.executeSql('SELECT * FROM recipe', [], (_, result) => {
 
+        let query = 'SELECT * FROM recipe';
+        //let query = 'SELECT * FROM recipe WHERE duration=ANY AND nationality=ANY AND title LIKE "T%" AND author=ANY';
+        //let query = 'SELECT * FROM recipe WHERE nationality=ALL AND title LIKE "g%"';
+
+        if (this.state.filter != null) {
+
+            console.log(this.state.filter)
+
+            let where1 = '';
+            if (this.state.filter.duration != null ||
+                this.state.filter.nationality != null ||
+                this.state.filter.title != null ||
+                this.state.filter.author != null) {
+                where1 = ' WHERE ';
+            }
+
+            let and1 = false;
+
+
+            let dur = this.state.filter.duration;
+            if (dur == null) {
+                dur = ''
+            } else {
+                dur = where1 + 'duration="' + this.state.filter.duration + '" ';
+                and1 = true;
+                where1 = '';
+            }
+
+            let nat = this.state.filter.nationality;
+            if (nat == null) {
+                nat = ''
+            } else {
+                let x = '';
+                if (and1) x = 'AND ';
+                nat = where1 + x + 'nationality="' + this.state.filter.nationality + '" ';
+                and1 = true;
+                where1 = '';
+            }
+
+            let tit = this.state.filter.title; //lol 
+            if (tit == null) {
+                tit = ''
+            } else {
+                let x = '';
+                if (and1) x = 'AND ';
+                tit = where1 + x + 'title LIKE "' + this.state.filter.title + '%" ';
+                and1 = true;
+                where1 = '';
+            }
+
+            let aut = this.state.filter.author;
+            if (aut == null) {
+                aut = ''
+            } else {
+                let x = '';
+                if (and1) x = 'AND ';
+                aut = where1 + x + 'author LIKE "' + this.state.filter.author + '%" ';
+                and1 = true;
+                where1 = '';
+            }
+
+            query = 'SELECT * FROM recipe' + dur + nat + tit + aut;
+            console.log(query);
+        }
+
+
+        database.transaction(
+            transaction => transaction.executeSql(query, [], (_, result) => {
+                console.log('läuft')
                 let rcps = [];
                 result.rows._array.forEach(e => {
                     rcps.push({
@@ -79,7 +146,7 @@ export default class Recipes extends React.Component {
                 </ScrollView>
 
                 <SearchButton
-                    onChange={(filter) => this.setState({ filter: filter })}
+                    onChange={(filter) => this.setState({ filter: filter }, () => this._retrieveRecipes())}
                 />
 
             </View>

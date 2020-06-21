@@ -11,7 +11,7 @@ const database = SQLite.openDatabase('recipes.db');
 const defaultRecipes = [
     {
         id: 'default_1',
-        image: null,//require('assets/images/trofie.jpg'),
+        image: null,
         title: 'Trofie alla Bolognese',
         duration: '90',
         nationality: 'ITA',
@@ -35,7 +35,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_2',
-        image: null,//require('assets/images/guacamole.jpg'),
+        image: null,
         title: 'Guacamole',
         duration: '10',
         nationality: 'MEX',
@@ -56,7 +56,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_3',
-        image: null,//require('assets/images/dorate.jpg'),
+        image: null,
         title: 'Gebackene Dorate',
         duration: '50',
         nationality: 'ITA',
@@ -76,7 +76,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_4',
-        image: null,//require('assets/images/zuchinisahne.jpg'),
+        image: null,
         title: 'Penne mit Zuchini-Sahne-Soße',
         duration: '20',
         nationality: 'ITA',
@@ -98,7 +98,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_5',
-        image: null,//require('assets/images/sarma.jpg'),
+        image: null,
         title: 'Sarma',
         duration: '110',
         nationality: 'TUR',
@@ -128,7 +128,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_6',
-        image: null,//require('assets/images/jägersoße.jpg'),
+        image: null,
         title: 'Jägermeister-Soße für Burger',
         duration: '30',
         nationality: 'GER',
@@ -147,7 +147,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_7',
-        image: null,//require('/assets/images/burger.jpg'),
+        image: null,
         title: 'Klassische Burger',
         duration: '60',
         nationality: 'USA',
@@ -167,7 +167,7 @@ const defaultRecipes = [
     },
     {
         id: 'default_8',
-        image: null,//require('assets/images/pilzsalat.jpg'),
+        image: null,
         title: 'Pilzsalat',
         duration: '30',
         nationality: 'GER',

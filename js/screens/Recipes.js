@@ -29,8 +29,6 @@ export default class Recipes extends React.Component {
 
         let query = 'SELECT * FROM recipe ORDER BY title';
 
-        //console.log(this.state.filter);
-
         if (this.state.filter != null) {
 
             let where1 = '';
@@ -88,7 +86,6 @@ export default class Recipes extends React.Component {
 
             query = 'SELECT * FROM recipe' + dur + nat + tit + aut + ' ORDER BY title';
 
-            //console.log(query);
         }
 
 
@@ -127,8 +124,6 @@ export default class Recipes extends React.Component {
                         });
                     }
                 }
-
-                //console.log(rcps);
 
                 this.setState({ recipes: rcps });
             }

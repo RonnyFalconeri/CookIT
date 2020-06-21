@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import CustomFont from './js/components/CustomFont';
-
 import HomeScreen from './js/screens/HomeScreen';
 import Recipes from './js/screens/Recipes';
 import Recipe from './js/screens/Recipe';
@@ -203,17 +202,14 @@ const defaultRecipes = [
   }
 ];
 
+
 export default class App extends React.Component {
 
   componentDidMount() {
-
     // uncomment when changing db scheme
     //this._resetDB();
-
     this._initDB();
-
     this._initDefaultRecipes();
-
   }
 
   _resetDB() {

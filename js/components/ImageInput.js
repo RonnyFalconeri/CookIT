@@ -86,8 +86,7 @@ export default class ImageInput extends React.Component {
                 }, () => this.props.onChange(this.state.image_picked));
             }
 
-            // CameraRoll.saveToCameraRoll(this.state.image);
-            //console.log(result);
+            // CameraRoll.saveToCameraRoll(this.state.image); //maybe one day
         } catch (E) {
             console.log(E);
         }

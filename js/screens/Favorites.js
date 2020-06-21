@@ -5,91 +5,13 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import FavoritesListItem from '../components/FavoritesListItem';
 import CustomFont from '../components/CustomFont';
-import SearchButton from '../components/SearchButton';
 
 
 const database = SQLite.openDatabase('recipes.db');
 
 export default class Favorites extends React.Component {
     state = {
-        recipes: [
-            /*{
-                id: 'default_1',
-                image: require('../../assets/images/trofie.jpg'),
-                title: 'Trofie alla Bolognese',
-                duration: '90',
-                nationality: 'ITA',
-                ingredients: [
-                    { amount: '1EL', ingredient: 'Olivenöl' },
-                    { amount: '1/2', ingredient: 'Zwiebel' },
-                    { amount: '1', ingredient: 'Möhre' },
-                    { amount: '2', ingredient: 'Sellerie' },
-                    { amount: '200g', ingredient: 'Erbsen' },
-                    { amount: '500g', ingredient: 'Rindhackfleisch' },
-                    { amount: '2 Flaschen', ingredient: 'Tomatensoße' },
-                    { amount: '5 Blätter', ingredient: 'Basilikum' },
-                    { amount: '1 Prise', ingredient: 'Muskat-Pfeffer' },
-                    { amount: '1 Prise', ingredient: 'Salz' },
-                    { amount: '1 Prise', ingredient: 'Zucker' }
-                ],
-                preparation: 'Olivenöl in den Topf. Zwiebel klein schneiden und auf Topf dünnsten. Sellerie und Möhre klein schneiden und hinzufügen. Rindhackfleisch hinzufügen und anbraten, dabei Muskat-Pfeffer und Salz nach belieben mitmischen. Wenn alles gebraten ist, Tomatesoße hinzufügen und Zucker. Alles ein Stunde kochen lassen. Danach Wasser im extra Topf kochen, Pasta hinzufügen und salzen. 10 min kochen lassen und dann mit Basilikum auf den Nudel servieren.',
-                favorite: true,
-                author: 'Claudia Falconeri',
-                createdAt: '00:00 Uhr, 25. Mai 2020'
-            },
-            {
-                id: 'default_2',
-                image: require('../../assets/images/guacamole.jpg'),
-                title: 'Guacamole',
-                duration: '10',
-                nationality: 'MEX',
-                ingredients: [
-                    { amount: '2', ingredient: 'Avocado' },
-                    { amount: '1', ingredient: 'Tomate' },
-                    { amount: '1/2', ingredient: 'Zitrone' },
-                    { amount: '1', ingredient: 'Knoblauchzehe' },
-                    { amount: '1/2', ingredient: 'Zwiebel' },
-                    { amount: '3', ingredient: 'Chillischoten' },
-                    { amount: '1', ingredient: 'Salz' },
-                    { amount: '1', ingredient: 'Pfeffer' }
-                ],
-                preparation: 'Tomaten, Knoblauch, Zwiebel, Chillischoten klein schneiden. Avocados mit einem Löffel aushüllen und zu den anderen Zutaten hinzufügen und mit Messer/Löffel/Gabel zerkleinern, dann Zitrone auspressen. Zuletzt mit einem Mixer alles zerkleinern und dabei Salz und Pfeffer hinzufügen. ',
-                favorite: true,
-                author: 'Ronny Falconeri',
-                createdAt: '00:00 Uhr, 25. Mai 2020'
-            },
-            {
-                id: 'default_5',
-                image: require('../../assets/images/sarma.jpg'),
-                title: 'Sarma',
-                duration: '110',
-                nationality: 'TUR',
-                ingredients: [
-                    { amount: '20', ingredient: 'Gekochte Weinblätter' },
-                    { amount: '5', ingredient: 'Getrocknete Paprika' },
-                    { amount: '5', ingredient: 'Getrocknete Aubergine' },
-                    { amount: '5', ingredient: 'Getrocknete Gurke' },
-                    { amount: '5', ingredient: 'Getrocknete (weiße) Zuchini' },
-                    { amount: '1,5 Tassen', ingredient: 'Reis' },
-                    { amount: '1 Bund', ingredient: 'Petersilie' },
-                    { amount: '5', ingredient: 'Knoblauchzehe(n)' },
-                    { amount: '5', ingredient: 'Zwiebeln' },
-                    { amount: '1', ingredient: 'Spitzpaprika' },
-                    { amount: '2TL', ingredient: 'Paprikamark' },
-                    { amount: '1EL', ingredient: 'Olivenöl' },
-                    { amount: '2TL', ingredient: 'Rapsöl' },
-                    { amount: '1 Prise', ingredient: 'Salz' },
-                    { amount: '2TL', ingredient: 'Paprikapulver' },
-                    { amount: '1 Prise', ingredient: 'Pfeffer' },
-                    { amount: '1 Prise', ingredient: 'Sumak-Eski' }
-                ],
-                preparation: 'Für die Füllung folgende Zutaten kleinhacken, zusammenmischen und kochen: Reis, Petersilie, Knoblauch, Zwiebeln, Spitzpaprika, Paprikamark, Olivenöl, Rapsöl, Salz, Paprikapulver, Pfeffer, Sumak-Eski (oder Zitronensalz). Die Weinblätter damit füllen. Danach Olivenöl in den Topf geben und alle gefüllten Weinblätter darin stapeln. Den Topf mit Wasser füllen bis alles bedeckt ist. Dann etwas Salz und „Sumak eskisi“ darauf geben.',
-                favorite: true,
-                author: 'Silan Yüzükan',
-                createdAt: '00:00 Uhr, 25. Mai 2020'
-            }*/
-        ],
-        filter: null
+        recipes: []
     };
 
 
@@ -103,7 +25,7 @@ export default class Favorites extends React.Component {
 
     _retrieveRecipes() {
         database.transaction(
-            transaction => transaction.executeSql('SELECT * FROM recipe WHERE favorite = 1', [], (_, result) => {
+            transaction => transaction.executeSql('SELECT * FROM recipe WHERE favorite = 1 ORDER BY title', [], (_, result) => {
 
                 let rcps = [];
                 result.rows._array.forEach(e => {
@@ -113,7 +35,7 @@ export default class Favorites extends React.Component {
                         title: e.title,
                         duration: e.duration,
                         nationality: e.nationality,
-                        ingredients: Array(e.ingredients),
+                        ingredients: JSON.parse(e.ingredients),
                         preparation: e.preparation,
                         favorite: e.favorite,
                         author: e.author,
@@ -154,9 +76,7 @@ export default class Favorites extends React.Component {
                 <ScrollView contentContainerStyle={styles.scrollContainer}>
                     {recipes}
                 </ScrollView>
-
             </View>
-
         );
     }
 }

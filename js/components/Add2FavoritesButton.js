@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as Haptics from 'expo-haptics';
 import { TouchableOpacity, Image } from 'react-native';
 
 
@@ -39,7 +38,7 @@ export default class Add2FavoritesButton extends React.Component {
 
             <TouchableOpacity
                 style={this.props.styling}
-                onPress={this.props.onPress, () => Haptics.impactAsync('heavy')}
+                onPress={this.props.onPress}
             >
                 {image}
             </TouchableOpacity>

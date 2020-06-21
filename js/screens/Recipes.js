@@ -43,7 +43,6 @@ export default class Recipes extends React.Component {
                         author: e.author,
                         createdAt: e.createdAt
                     });
-                    console.log(e.duration);
                 });
 
                 this.setState({ recipes: rcps });

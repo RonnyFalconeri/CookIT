@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as SQLite from 'expo-sqlite';
 import * as Haptics from 'expo-haptics';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
@@ -8,6 +9,8 @@ import Add2FavoritesButton from '../components/Add2FavoritesButton';
 import EditButton from '../components/EditButton';
 import PortionAdjust from '../components/PortionAdjust';
 
+
+const database = SQLite.openDatabase('recipes.db');
 
 export default class Recipe extends React.Component {
     state = {
@@ -46,10 +49,33 @@ export default class Recipe extends React.Component {
         this.setState({ portions: ingredients });
     }
 
+    _addToFavorites() {
+
+        let recipe = this.state.recipe;
+        let fav = !recipe.favorite;
+
+        // update DB
+        database.transaction(
+            transaction => transaction.executeSql(
+                'UPDATE recipe SET favorite = ? WHERE id = ?;',
+                [fav, recipe.id]
+            )
+        );
+
+        // update UI
+        this.setState({
+            recipe: {
+                ...recipe,
+                favorite: fav
+            }
+        });
+
+    }
+
 
     render() {
 
-        console.log(this.props.route.params.recipe.ingredients);
+        //console.log(this.props.route.params.recipe.ingredients);
         // render variable amount of rows
         let ingredients = this.state.portions.map((key, i) => {
             return (
@@ -102,6 +128,10 @@ export default class Recipe extends React.Component {
                     <Add2FavoritesButton
                         styling={{ position: 'absolute', top: 17, left: 20 }}
                         favorite={this.state.recipe.favorite}
+                        onPress={() => {
+                            this._addToFavorites();
+                            Haptics.impactAsync('heavy')
+                        }}
                     />
 
                     <View style={styles.containerTitle}>

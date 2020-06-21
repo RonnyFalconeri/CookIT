@@ -1,15 +1,19 @@
 import * as React from 'react';
 import * as Haptics from 'expo-haptics';
+import * as SQLite from 'expo-sqlite';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import FavoritesListItem from '../components/FavoritesListItem';
 import CustomFont from '../components/CustomFont';
 import SearchButton from '../components/SearchButton';
 
+
+const database = SQLite.openDatabase('recipes.db');
+
 export default class Favorites extends React.Component {
     state = {
         recipes: [
-            {
+            /*{
                 id: 'default_1',
                 image: require('../../assets/images/trofie.jpg'),
                 title: 'Trofie alla Bolognese',
@@ -83,7 +87,7 @@ export default class Favorites extends React.Component {
                 favorite: true,
                 author: 'Silan Yüzükan',
                 createdAt: '00:00 Uhr, 25. Mai 2020'
-            }
+            }*/
         ],
         filter: null
     };
@@ -93,6 +97,34 @@ export default class Favorites extends React.Component {
 
         // change header title
         this.props.navigation.setOptions({ title: <CustomFont>Favoriten</CustomFont> });
+
+        this._retrieveRecipes();
+    }
+
+    _retrieveRecipes() {
+        database.transaction(
+            transaction => transaction.executeSql('SELECT * FROM recipe WHERE favorite = 1', [], (_, result) => {
+
+                let rcps = [];
+                result.rows._array.forEach(e => {
+                    rcps.push({
+                        id: e.id,
+                        image: null,
+                        title: e.title,
+                        duration: e.duration,
+                        nationality: e.nationality,
+                        ingredients: Array(e.ingredients),
+                        preparation: e.preparation,
+                        favorite: e.favorite,
+                        author: e.author,
+                        createdAt: e.createdAt
+                    });
+                });
+
+                this.setState({ recipes: rcps });
+            }
+            )
+        );
     }
 
 

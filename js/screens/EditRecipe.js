@@ -84,8 +84,15 @@ export default class EditRecipe extends React.Component {
     }
 
     _deleteFromDB() {
-        // TODO: delete recipe from DB
-        console.log('deleting from DB...');
+        // save recipe in DB
+        database.transaction(
+            transaction => transaction.executeSql(
+                'DELETE FROM recipe WHERE id=?',
+                [this.state.recipe.id]
+            )
+        );
+
+        this.props.navigation.navigate('Recipes');
     }
 
     _handleImageInput(value) {

@@ -1,32 +1,16 @@
 import * as React from 'react';
+import * as SQLite from 'expo-sqlite';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import Add2FavoritesButton from '../components/Add2FavoritesButton';
 import CustomFont from '../components/CustomFont';
 
 
+const database = SQLite.openDatabase('recipes.db');
+
 export default class RandomRecipe extends React.Component {
     state = {
-        recipe: {
-            id: 'default_3',
-            image: require('../../assets/images/dorate.jpg'),
-            title: 'Gebackende Dorate',
-            duration: '50',
-            nationality: 'ITA',
-            ingredients: [
-                { amount: '4', ingredient: 'Dorade-Fische' },
-                { amount: '1EL', ingredient: 'Olivenöl' },
-                { amount: '4', ingredient: 'Knoblauchzehen' },
-                { amount: '1 Prise', ingredient: 'Oregano' },
-                { amount: '1 Prise', ingredient: 'Salz' },
-                { amount: '1 Prise', ingredient: 'Pfeffer' },
-                { amount: '1', ingredient: 'Zitrone' }
-            ],
-            preparation: 'Fisch putzen und in Backform legen. Olivenöl mit Oregano, Salz, Knoblauch (kleingeschnitten) und Pfeffer in eine kleine Schüssel mischen. Mischung in und auf den Fisch füllen und in den Backofen bei 200 Grad Celsius schieben und 45 Min kochen lassen. Danach mit Zitrone servieren.',
-            favorite: false,
-            author: 'Claudia Falconeri',
-            createdAt: '00:00 Uhr, 25. Mai 2020'
-        },
+        recipe: {},
         image_default: require('../../assets/images/defaultRecipeImage.png')
     };
 
@@ -35,12 +19,19 @@ export default class RandomRecipe extends React.Component {
 
         // change header title
         this.props.navigation.setOptions({ title: <CustomFont>Zufällig</CustomFont> });
-        console.log(this.state.recipe);
+
+        this._nextRandomRecipe();
     }
 
     _nextRandomRecipe() {
-        // TODO: select a new random recipe from DB
-        console.log('next recipe');
+        database.transaction(
+            transaction => transaction.executeSql('SELECT * FROM recipe', [], (_, result) => {
+
+                // show random item of recipe array
+                this.setState({ recipe: result.rows._array[Math.floor(Math.random() * result.rows.length)] });
+            }
+            )
+        );
     }
 
     render() {

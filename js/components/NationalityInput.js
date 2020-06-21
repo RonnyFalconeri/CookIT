@@ -13,11 +13,13 @@ export default class NationalityInput extends React.Component {
                     selectedValue={this.props.selectedValue}
                 >
                     <Picker.Item label="Keine" value="none" />
-                    <Picker.Item label="Italienisch" value="ita" />
-                    <Picker.Item label="Deutsch" value="deu" />
-                    <Picker.Item label="Griechisch" value="gre" />
-                    <Picker.Item label="Chinesisch" value="chi" />
-                    <Picker.Item label="Türkisch" value="tur" />
+                    <Picker.Item label="Italienisch" value="ITA" />
+                    <Picker.Item label="Deutsch" value="GER" />
+                    <Picker.Item label="Griechisch" value="GRE" />
+                    <Picker.Item label="Chinesisch" value="CHI" />
+                    <Picker.Item label="Türkisch" value="TUR" />
+                    <Picker.Item label="Amerikanisch" value="USA" />
+                    <Picker.Item label="Mexikanisch" value="MEX" />
                 </Picker>
             </View>
         );

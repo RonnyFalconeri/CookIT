@@ -8,16 +8,24 @@ import CustomFont from '../components/CustomFont';
 export default class RandomRecipe extends React.Component {
     state = {
         recipe: {
-            image: null,
-            title: 'Spaghetti Bolognese',
-            duration: '14',
-            nationality: 'ita',
+            id: 'default_3',
+            image: require('../../assets/images/dorate.jpg'),
+            title: 'Gebackende Dorate',
+            duration: '50',
+            nationality: 'ITA',
             ingredients: [
-                { amount: '100g', ingredient: 'Spaghetti' },
-                { amount: '3', ingredient: 'Tomaten' }
+                { amount: '4', ingredient: 'Dorade-Fische' },
+                { amount: '1EL', ingredient: 'Olivenöl' },
+                { amount: '4', ingredient: 'Knoblauchzehen' },
+                { amount: '1 Prise', ingredient: 'Oregano' },
+                { amount: '1 Prise', ingredient: 'Salz' },
+                { amount: '1 Prise', ingredient: 'Pfeffer' },
+                { amount: '1', ingredient: 'Zitrone' }
             ],
-            preparation: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-            favorite: true
+            preparation: 'Fisch putzen und in Backform legen. Olivenöl mit Oregano, Salz, Knoblauch (kleingeschnitten) und Pfeffer in eine kleine Schüssel mischen. Mischung in und auf den Fisch füllen und in den Backofen bei 200 Grad Celsius schieben und 45 Min kochen lassen. Danach mit Zitrone servieren.',
+            favorite: false,
+            author: 'Claudia Falconeri',
+            createdAt: '00:00 Uhr, 25. Mai 2020'
         },
         image_default: require('../../assets/images/defaultRecipeImage.png')
     };
@@ -42,7 +50,7 @@ export default class RandomRecipe extends React.Component {
                 <Image
                     key={'default'}
                     style={styles.image}
-                    source={this.state.image_default}
+                    source={this.state.recipe.image}
                 />
 
                 <Add2FavoritesButton

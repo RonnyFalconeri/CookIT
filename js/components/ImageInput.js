@@ -106,7 +106,7 @@ export default class ImageInput extends React.Component {
                         <Image
                             key={'delivered'}
                             style={styles.recipeImage_style}
-                            source={{ uri: this.state.image_delivered }}
+                            source={this.state.image_delivered}
                         />
                     );
                 }

@@ -20,7 +20,7 @@ export default class CustomFont extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return <ActivityIndicator />
+            return null
         }
         return (
             <Text style={styles.defaultStyle}>
